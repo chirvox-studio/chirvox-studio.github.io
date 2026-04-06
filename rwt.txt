@@ -1,0 +1,32 @@
+      <label><input type="checkbox" value="Custom Domain Setup"> Custom Domain Setup</label>
+      <label><input type="checkbox" value="Monthly Maintenance"> Monthly Maintenance</label>
+      <label><input type="checkbox" value="Google Analytics"> Google Analytics</label>
+      <label><input type="checkbox" value="Extra Pages"> Extra Pages</label>
+      <label><input type="checkbox" value="Photo Gallery Section"> Photo Gallery Section</label>
+
+
+
+
+
+<div class="form-group">
+
+  <label class="custom-label">
+    INTERESTED IN <span>*</span>
+  </label>
+
+  <div class="multi-select" id="multiSelect">
+
+    <div class="select-box" onclick="toggleDropdown()">
+      — Select a plan —
+    </div>
+
+    <div class="options">
+      <label><input type="checkbox" disabled> — Select a plan —</label>
+
+      <label><input type="checkbox" value="Starter Plan — ₹4,999"> Starter Plan — ₹4,999</label>
+      <label><input type="checkbox" value="Business Plan — ₹9,999"> Business Plan — ₹9,999</label>
+      <label><input type="checkbox" value="Not sure yet"> Not sure yet</label>
+    </div>
+
+  </div>
+</div>

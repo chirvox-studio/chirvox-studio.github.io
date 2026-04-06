@@ -249,6 +249,22 @@
             <span class="field-error" id="err-plan">Please select a plan or "Not sure yet".</span>
           </div>
 
+          <!-- Add-ons -->
+          <div class="form-group" id="fg-add">
+            <label for="fadd">Add-ons <span style="color:#c9a84c"></span></label>
+            <select id="fadd">
+              <option value="">— Select a plan —</option>
+              <option value="Custom Domain Setup">Custom Domain Setup</option>
+              <option value="Monthly Maintenance">Monthly Maintenance</option>
+              <option value="Google Analytics">Google Analytics</option>
+              <option value="Extra Pages">Extra Pages</option>
+              <option value="Photo Gallery Section">Photo Gallery Section</option>
+            </select>
+          </div>
+
+        
+
+
           <!-- Message -->
           <div class="form-group" id="fg-message">
             <label for="fmessage">Tell us about your project <span style="color:#c9a84c">*</span></label>
@@ -434,6 +450,7 @@ async function submitForm(via) {
   clearState('fg-email','err-email');
   clearState('fg-business','err-business');
   clearState('fg-plan','err-plan');
+  clearState('fg-add');
   clearState('fg-message','err-message');
   document.getElementById('otherBusinessGroup').classList.remove('has-error');
   document.getElementById('err-other').style.display = 'none';
@@ -447,6 +464,7 @@ async function submitForm(via) {
   var business = document.getElementById('fbusiness').value;
   var other    = document.getElementById('fotherBusiness').value.trim();
   var plan     = document.getElementById('fplan').value;
+  var plan     = document.getElementById('fadd').value;
   var message  = document.getElementById('fmessage').value.trim();
   var tncOk    = document.getElementById('tncCheck').checked;
 
@@ -532,13 +550,14 @@ async function submitForm(via) {
   document.getElementById('fbusiness').value= '';
   document.getElementById('fotherBusiness').value = '';
   document.getElementById('fplan').value    = '';
+  document.getElementById('fadd').value    = '';
   document.getElementById('fmessage').value = '';
   document.getElementById('tncCheck').checked = false;
   document.getElementById('otherBusinessGroup').classList.remove('show','has-error');
   document.getElementById('otherBusinessGroup').style.display = 'none';
   document.getElementById('tnc-group').classList.remove('has-error');
   document.getElementById('err-tnc').style.display = 'none';
-  ['fg-name','fg-phone','fg-email','fg-business','fg-plan','fg-message'].forEach(function(id) {
+  ['fg-name','fg-phone','fg-email','fg-business','fg-plan','fg-add','fg-message'].forEach(function(id) {
     var el = document.getElementById(id);
     if (el) el.classList.remove('has-error','has-success');
   });
