@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, viewport-fit=cover"/>
+  <title>Contact — Chirvox</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,500;0,600;0,700;1,300;1,500&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css"/>
+  <style>
+    /* NAV BRAND */
+    .nav-logo { display:flex; align-items:center; gap:0.65rem; flex-shrink:0; text-decoration:none; }
+    .nav-brand-name { font-family:'Cormorant Garamond',serif; font-size:1.25rem; font-weight:600; letter-spacing:-0.01em; color:var(--white); white-space:nowrap; }
+    .nav-brand-name span { background:var(--gold-gradient); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+
+    /* FORM ERROR/SUCCESS STATES */
+    .field-error { font-size:0.76rem; color:#ff6b6b; margin-top:0.3rem; display:none; }
+    .form-group.has-error input,
+    .form-group.has-error select,
+    .form-group.has-error textarea { border-color:#ff6b6b !important; box-shadow:0 0 0 3px rgba(255,107,107,0.15) !important; }
+    .form-group.has-error .field-error { display:block; }
+    .form-group.has-success input,
+    .form-group.has-success select,
+    .form-group.has-success textarea { border-color:#2ecc71 !important; }
+
+    /* OTHER BUSINESS INPUT */
+    #otherBusinessGroup { display:none; margin-top:0; }
+    #otherBusinessGroup.show { display:block; }
+    #otherBusinessGroup.has-error input { border-color:#ff6b6b !important; box-shadow:0 0 0 3px rgba(255,107,107,0.15) !important; }
+    #otherBusinessGroup .field-error { display:none; }
+    #otherBusinessGroup.has-error .field-error { display:block; }
+
+    /* EMAIL CHECKING INDICATOR */
+    .validating-indicator { font-size:0.78rem; color:var(--gold); display:none; margin-top:0.25rem; }
+    .validating-indicator.show { display:block; }
+
+    /* TERMS CHECKBOX */
+    .tnc-group { margin-top:0.25rem; }
+    .tnc-label { display:flex; align-items:flex-start; gap:0.75rem; cursor:pointer; user-select:none; }
+    .tnc-label input[type="checkbox"] { display:none; }
+    .tnc-custom-check {
+      width:20px; height:20px; flex-shrink:0; margin-top:2px;
+      border:1.5px solid rgba(201,168,76,0.3); border-radius:5px;
+      background:rgba(255,255,255,0.04);
+      display:grid; place-items:center;
+      transition:border-color 0.2s, background 0.2s;
+    }
+    .tnc-custom-check::after { content:'✓'; font-size:0.7rem; font-weight:800; color:#000; opacity:0; transition:opacity 0.15s; }
+    .tnc-label input:checked + .tnc-custom-check { background:linear-gradient(135deg,#c9a84c,#f0d080,#c9a84c); border-color:#c9a84c; }
+    .tnc-label input:checked + .tnc-custom-check::after { opacity:1; }
+    .tnc-text { font-size:0.88rem; color:rgba(255,255,255,0.5); line-height:1.55; }
+    .tnc-link { color:#4a9eff; text-decoration:underline; text-underline-offset:2px; font-weight:600; transition:color 0.15s; }
+    .tnc-link:hover { color:#74b8ff; }
+    .tnc-group.has-error .tnc-custom-check { border-color:#ff6b6b !important; }
+    .tnc-group .field-error { margin-top:0.4rem; margin-left:2rem; }
+
+    /* SUBMIT BUTTONS */
+    .submit-row { display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin-top:0.5rem; }
+    .btn-sub-wa {
+      background:linear-gradient(135deg,#c9a84c,#f0d080,#c9a84c); color:#000; border:none;
+      padding:0.9rem 0.8rem; border-radius:100px;
+      font-family:'Outfit',sans-serif; font-size:0.9rem; font-weight:700;
+      cursor:pointer; letter-spacing:0.02em;
+      transition:transform 0.15s, box-shadow 0.2s, opacity 0.2s;
+      display:flex; align-items:center; justify-content:center; gap:0.4rem;
+    }
+    .btn-sub-wa:hover { transform:translateY(-2px); box-shadow:0 8px 25px rgba(201,168,76,0.4); opacity:0.92; }
+    .btn-sub-email {
+      background:transparent; color:#fff; border:1.5px solid rgba(201,168,76,0.2);
+      padding:0.9rem 0.8rem; border-radius:100px;
+      font-family:'Outfit',sans-serif; font-size:0.9rem; font-weight:600;
+      cursor:pointer; letter-spacing:0.02em;
+      transition:border-color 0.2s, background 0.2s, color 0.2s, transform 0.15s;
+      display:flex; align-items:center; justify-content:center; gap:0.4rem;
+    }
+    .btn-sub-email:hover { border-color:#c9a84c; color:#c9a84c; background:rgba(201,168,76,0.08); transform:translateY(-2px); }
+
+    /* SUCCESS POPUP */
+    .popup-overlay {
+      position:fixed; inset:0; z-index:9999;
+      background:rgba(0,0,0,0.85); backdrop-filter:blur(12px);
+      display:flex; align-items:center; justify-content:center;
+      opacity:0; pointer-events:none; transition:opacity 0.3s;
+    }
+    .popup-overlay.show { opacity:1; pointer-events:all; }
+    .popup-box {
+      background:#111; border:1px solid rgba(201,168,76,0.25);
+      border-radius:20px; padding:3rem 2.5rem;
+      max-width:440px; width:90%; text-align:center;
+      transform:translateY(40px) scale(0.94);
+      transition:transform 0.4s cubic-bezier(0.34,1.56,0.64,1), opacity 0.3s;
+      opacity:0;
+      box-shadow:0 40px 80px rgba(0,0,0,0.7), 0 0 60px rgba(201,168,76,0.1);
+    }
+    .popup-overlay.show .popup-box { transform:translateY(0) scale(1); opacity:1; }
+    .popup-icon {
+      width:76px; height:76px;
+      background:rgba(201,168,76,0.12); border:1px solid rgba(201,168,76,0.2);
+      border-radius:50%; display:grid; place-items:center;
+      font-size:2.2rem; margin:0 auto 1.5rem;
+      animation:popBounce 0.6s 0.15s both;
+    }
+    @keyframes popBounce { 0%{transform:scale(0)} 65%{transform:scale(1.18)} 100%{transform:scale(1)} }
+    .popup-box h3 { font-family:'Cormorant Garamond',serif; font-size:1.9rem; font-weight:600; color:#fff; margin-bottom:0.7rem; letter-spacing:-0.02em; }
+    .popup-box p { font-size:0.92rem; color:rgba(255,255,255,0.5); line-height:1.65; margin-bottom:2rem; }
+    .popup-close {
+      background:linear-gradient(135deg,#c9a84c,#f0d080,#c9a84c); color:#000;
+      border:none; padding:0.85rem 2.5rem; border-radius:100px;
+      font-family:'Outfit',sans-serif; font-size:0.95rem; font-weight:700;
+      cursor:pointer; transition:opacity 0.2s, transform 0.15s;
+    }
+    .popup-close:hover { opacity:0.9; transform:translateY(-2px); }
+    .popup-via { display:inline-block; margin-top:0.9rem; font-size:0.8rem; color:rgba(255,255,255,0.4); background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.07); padding:0.3rem 0.9rem; border-radius:100px; }
+
+    @media(max-width:600px){ .submit-row { grid-template-columns:1fr; } }
+  </style>
+</head>
+<body>
+
+<!-- SUCCESS POPUP -->
+<div class="popup-overlay" id="successPopup">
+  <div class="popup-box">
+    <div class="popup-icon">✅</div>
+    <h3>Message Sent!</h3>
+    <p>Thank you for reaching out to Chirvox. We've received your details and will get back to you as soon as possible — usually within 2 hours on business days.</p>
+    <button class="popup-close" onclick="closePopup()">Got it, Thanks!</button>
+    <div class="popup-via" id="popupVia">Sent via WhatsApp</div>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav class="navbar" id="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">
+      <img src="logo.png" alt="Chirvox Logo" class="logo-img"/>
+      <span class="nav-brand-name"> <span>Chirvox</span></span>
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="portfolio.html">Portfolio</a></li>
+      <li><a href="pricing.html">Pricing</a></li>
+      <li><a href="contact.html" class="active">Contact</a></li>
+    </ul>
+    <a href="https://wa.me/916363797625?text=Hi%2C%20I'm%20interested%20in%20a%20website!" class="btn-gold" target="_blank" rel="noopener">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      WhatsApp
+    </a>
+    <button class="hamburger" id="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<div class="page-hero">
+  <div class="page-hero-eyebrow">Get In Touch</div>
+  <h1>Let's Build Something <em>Great Together</em></h1>
+  <p>Tell us about your business. We'll get back to you within a few hours with ideas and a clear quote — no obligation.</p>
+</div>
+
+<section class="section-dark">
+  <div class="container">
+    <div class="contact-grid">
+
+      <!-- LEFT: Info -->
+      <div class="contact-info-card reveal">
+        <h3>Talk to us directly</h3>
+        <p>The fastest way to reach us is WhatsApp. We respond within 2 hours on most days. Alternatively, fill the form and we'll contact you.</p>
+        <div class="contact-methods">
+          <a href="https://wa.me/916363797625?text=Hi%2C%20I'm%20interested%20in%20getting%20a%20website!" class="c-method" target="_blank" rel="noopener">
+            <div class="c-method-icon">💬</div>
+            <div class="c-method-text"><strong>WhatsApp (Fastest)</strong><span>Reply within 2 hours</span></div>
+          </a>
+          <a href="/cdn-cgi/l/email-protection#adc5c8c1c1c2edcedbdac8cfcedfcccbd983cec2c0" class="c-method">
+            <div class="c-method-icon">✉️</div>
+            <div class="c-method-text"><strong><span class="__cf_email__" data-cfemail="147c7178787b54776263717677667572603a777b79">[email&#160;protected]</span></strong><span>For detailed discussions</span></div>
+          </a>
+        </div>
+        <div style="margin-top:2rem;padding-top:2rem;border-top:1px solid rgba(255,255,255,0.06)">
+          <p style="font-size:0.85rem;color:rgba(255,255,255,0.4);margin-bottom:1rem;font-weight:600;text-transform:uppercase;letter-spacing:0.08em">What to expect</p>
+          <div style="display:flex;flex-direction:column;gap:0.8rem">
+            <div style="display:flex;align-items:center;gap:0.8rem;font-size:0.88rem;color:rgba(255,255,255,0.45)"><span style="color:#c9a84c;font-weight:700">01</span>Free consultation call / chat</div>
+            <div style="display:flex;align-items:center;gap:0.8rem;font-size:0.88rem;color:rgba(255,255,255,0.45)"><span style="color:#c9a84c;font-weight:700">02</span>Clear quote — no hidden costs</div>
+            <div style="display:flex;align-items:center;gap:0.8rem;font-size:0.88rem;color:rgba(255,255,255,0.45)"><span style="color:#c9a84c;font-weight:700">03</span>Website delivered in 5–10 days</div>
+            <div style="display:flex;align-items:center;gap:0.8rem;font-size:0.88rem;color:rgba(255,255,255,0.45)"><span style="color:#c9a84c;font-weight:700">04</span>Launch &amp; ongoing support</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT: Form -->
+      <div class="contact-form-card reveal">
+        <h3>Send us a message</h3>
+        <div class="form" id="contactForm">
+
+          <!-- Name + Phone -->
+          <div class="form-row">
+            <div class="form-group" id="fg-name">
+              <label for="fname">Your Name <span style="color:#c9a84c">*</span></label>
+              <input type="text" id="fname" placeholder="Ramesh Kumar" autocomplete="name"/>
+              <span class="field-error" id="err-name">Please enter your full name.</span>
+            </div>
+            <div class="form-group" id="fg-phone">
+              <label for="fphone">Phone / WhatsApp <span style="color:#c9a84c">*</span></label>
+              <input type="tel" id="fphone" placeholder="9876543210" maxlength="10" inputmode="numeric"/>
+              <span class="field-error" id="err-phone">Must be exactly 10 digits.</span>
+            </div>
+          </div>
+
+          <!-- Email -->
+          <div class="form-group" id="fg-email">
+            <label for="femail">Email Address <span style="color:#c9a84c">*</span></label>
+            <input type="email" id="femail" placeholder="you@example.com" autocomplete="email"/>
+            <span class="validating-indicator" id="emailChecking">⏳ Checking email address…</span>
+            <span class="field-error" id="err-email">Please enter a valid email address.</span>
+          </div>
+
+          <!-- Business Type -->
+          <div class="form-group" id="fg-business">
+            <label for="fbusiness">Business Type <span style="color:#c9a84c">*</span></label>
+            <select id="fbusiness" onchange="handleBusinessChange(this.value)">
+              <option value="">— Select your business —</option>
+              <option value="Restaurant / Café">Restaurant / Café</option>
+              <option value="Gym / Fitness Center">Gym / Fitness Center</option>
+              <option value="Retail Shop">Retail Shop</option>
+              <option value="Beauty / Salon / Spa">Beauty / Salon / Spa</option>
+              <option value="Medical / Healthcare">Medical / Healthcare</option>
+              <option value="Local Service">Local Service</option>
+              <option value="Educational Institution">Educational Institution</option>
+              <option value="Other">Other (specify below ↓)</option>
+            </select>
+            <span class="field-error" id="err-business">Please select your business type.</span>
+          </div>
+
+          <!-- Other Business (hidden until "Other" selected) -->
+          <div class="form-group" id="otherBusinessGroup">
+            <label for="fotherBusiness">Describe Your Business <span style="color:#c9a84c">*</span></label>
+            <input type="text" id="fotherBusiness" placeholder="e.g. Plumbing services, Photography studio, Travel agency…"/>
+            <span class="field-error" id="err-other">Please describe your business.</span>
+          </div>
+
+          <!-- Plan -->
+          <div class="form-group" id="fg-plan">
+            <label for="fplan">Interested In <span style="color:#c9a84c">*</span></label>
+            <select id="fplan">
+              <option value="">— Select a plan —</option>
+              <option value="Starter Plan — ₹4,999">Starter Plan — ₹4,999</option>
+              <option value="Business Plan — ₹9,999">Business Plan — ₹9,999</option>
+              <option value="Not sure yet">Not sure yet</option>
+            </select>
+            <span class="field-error" id="err-plan">Please select a plan or "Not sure yet".</span>
+          </div>
+
+          <!-- Message -->
+          <div class="form-group" id="fg-message">
+            <label for="fmessage">Tell us about your project <span style="color:#c9a84c">*</span></label>
+            <textarea id="fmessage" placeholder="Describe your business and what kind of website you're looking for…"></textarea>
+            <span class="field-error" id="err-message">Please write a short message about your project.</span>
+          </div>
+
+          <!-- T&C Checkbox -->
+          <div class="tnc-group" id="tnc-group">
+            <label class="tnc-label">
+              <input type="checkbox" id="tncCheck"/>
+              <span class="tnc-custom-check"></span>
+              <span class="tnc-text">
+                I agree to the
+                <a href="terms.html" target="_blank" class="tnc-link">Terms &amp; Conditions</a>
+                and understand how my data will be used. <span style="color:#c9a84c">*</span>
+              </span>
+            </label>
+            <span class="field-error" id="err-tnc">You must agree to the Terms &amp; Conditions to proceed.</span>
+          </div>
+
+          <!-- Submit Buttons -->
+          <div class="submit-row">
+            <button type="button" class="btn-sub-wa" onclick="submitForm('whatsapp')">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+              Send via WhatsApp
+            </button>
+            <button type="button" class="btn-sub-email" onclick="submitForm('email')">
+              ✉️ Send via Email
+            </button>
+          </div>
+
+        </div><!-- end #contactForm -->
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" style="display:inline-flex;align-items:center;gap:0.65rem;text-decoration:none;margin-bottom:1rem;">
+          <img src="logo.png" alt="Chirvox" style="height:50px;width:auto"/>
+          <span style="font-family:Cormorant Garamond,serif;font-size:1.15rem;font-weight:600;color:#fff;letter-spacing:-0.01em;white-space:nowrap"> <span style="background:linear-gradient(135deg,#c9a84c 0%,#f0d080 45%,#c9a84c 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">Chirvox</span></span>
+        </a>
+        <p>Premium web development for small businesses. Professional websites that help you grow.</p>
+        <div class="footer-social">
+          <a href="https://wa.me/916363797625" target="_blank" class="social-btn">💬 WhatsApp</a>
+          <a href="/cdn-cgi/l/email-protection#b1d9d4dddddef1d2c7c6d4d3d2c3d0d7c59fd2dedc" class="social-btn">✉️ Email</a>
+        </div>
+      </div>
+      <div class="footer-col"><h4>Pages</h4><ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="portfolio.html">Portfolio</a></li>
+        <li><a href="pricing.html">Pricing</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul></div>
+      <div class="footer-col"><h4>Services</h4><ul>
+        <li><a href="services.html#svc-business-website">Business Website</a></li>
+        <li><a href="services.html#svc-landing-page">Landing Page</a></li>
+        <li><a href="services.html#svc-redesign">Website Redesign</a></li>
+        <li><a href="services.html#svc-seo">SEO Setup</a></li>
+      </ul></div>
+      <div class="footer-col"><h4>Legal</h4><ul>
+        <li><a href="terms.html">Terms &amp; Conditions</a></li>
+        <li><a href="https://wa.me/916363797625" target="_blank">WhatsApp Us</a></li>
+        <li><a href="/cdn-cgi/l/email-protection#147c7178787b54776263717677667572603a777b79"><span class="__cf_email__" data-cfemail="6d05080101022d0e1b1a080f0e1f0c0b19430e0200">[email&#160;protected]</span></a></li>
+      </ul></div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 Chirvox. All rights reserved.</span>
+      <span>Made with ♥ in India</span>
+      <a href="terms.html" style="color:rgba(255,255,255,0.2);font-size:0.8rem;text-decoration:none" onmouseover="this.style.color='#c9a84c'" onmouseout="this.style.color='rgba(255,255,255,0.2)'">Terms &amp; Conditions</a>
+    </div>
+  </div>
+</footer>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="main.js"></script>
+<script>
+// ── "Other" business toggle ──
+function handleBusinessChange(val) {
+  var grp = document.getElementById('otherBusinessGroup');
+  var inp = document.getElementById('fotherBusiness');
+  if (val === 'Other') {
+    grp.classList.add('show');
+    grp.style.display = 'block';
+  } else {
+    grp.classList.remove('show','has-error');
+    grp.style.display = 'none';
+    inp.value = '';
+    document.getElementById('err-other').style.display = 'none';
+  }
+}
+
+// ── Phone: digits only, max 10 ──
+document.getElementById('fphone').addEventListener('input', function() {
+  this.value = this.value.replace(/\D/g, '').slice(0, 10);
+});
+
+// ── Helpers ──
+function setErr(groupId, errId, msg) {
+  var fg = document.getElementById(groupId);
+  if (fg) { fg.classList.add('has-error'); fg.classList.remove('has-success'); }
+  var e = document.getElementById(errId);
+  if (e) { if (msg) e.textContent = msg; e.style.display = 'block'; }
+}
+function setOk(groupId, errId) {
+  var fg = document.getElementById(groupId);
+  if (fg) { fg.classList.remove('has-error'); fg.classList.add('has-success'); }
+  var e = document.getElementById(errId);
+  if (e) e.style.display = 'none';
+}
+function clearState(groupId, errId) {
+  var fg = document.getElementById(groupId);
+  if (fg) fg.classList.remove('has-error','has-success');
+  var e = document.getElementById(errId);
+  if (e) e.style.display = 'none';
+}
+
+// ── Email validation (format + known fake domain block + DNS when online) ──
+// Blocks obvious fake domains locally; tries real DNS when online
+var FAKE_DOMAINS = ['test.com','example.com','fake.com','nomail.com','noreply.com','mailinator.com','trashmail.com','guerrillamail.com','temp-mail.org','throwam.com','yopmail.com','sharklasers.com','none.com','abc.com','xyz.com','aaa.com','bbb.com','ccc.com','qqq.com','zzz.com'];
+
+async function fetchWithTimeout(url, opts, ms) {
+  var ctrl = new AbortController();
+  var timer = setTimeout(function(){ ctrl.abort(); }, ms);
+  try {
+    var res = await fetch(url, Object.assign({}, opts, { signal: ctrl.signal }));
+    clearTimeout(timer);
+    return res;
+  } catch(e) { clearTimeout(timer); throw e; }
+}
+
+async function checkEmailDomain(email) {
+  var m = email.match(/^[^\s@]+@([^\s@]+\.([^\s@]{2,}))$/);
+  if (!m) return false;
+  var domain = m[1].toLowerCase();
+  var tld = m[2].toLowerCase();
+
+  // Block obviously fake TLDs and domains
+  if (['invalid','test','local','localhost','example','fake','none'].indexOf(tld) !== -1) return false;
+  if (FAKE_DOMAINS.indexOf(domain) !== -1) return false;
+  // Must have at least one dot
+  if (domain.split('.').length < 2) return false;
+
+  // Try DNS-over-HTTPS with a 4s timeout (works when online, gracefully fails offline)
+  try {
+    var r = await fetchWithTimeout(
+      'https://cloudflare-dns.com/dns-query?name=' + encodeURIComponent(domain) + '&type=MX',
+      { headers: { 'Accept': 'application/dns-json' } },
+      4000
+    );
+    if (r.ok) {
+      var d = await r.json();
+      if (d.Status === 0 && d.Answer && d.Answer.length > 0) return true;
+    }
+    // Try A record as fallback
+    var r2 = await fetchWithTimeout(
+      'https://cloudflare-dns.com/dns-query?name=' + encodeURIComponent(domain) + '&type=A',
+      { headers: { 'Accept': 'application/dns-json' } },
+      4000
+    );
+    if (r2.ok) {
+      var d2 = await r2.json();
+      if (d2.Status === 0 && d2.Answer && d2.Answer.length > 0) return true;
+    }
+    // DNS says domain has no MX or A record — likely invalid
+    return false;
+  } catch (ex) {
+    // Fetch blocked (file://, offline, CORS) — trust format validation
+    return true;
+  }
+}
+
+// ── Main submit function ──
+async function submitForm(via) {
+  // Reset all field states
+  clearState('fg-name','err-name');
+  clearState('fg-phone','err-phone');
+  clearState('fg-email','err-email');
+  clearState('fg-business','err-business');
+  clearState('fg-plan','err-plan');
+  clearState('fg-message','err-message');
+  document.getElementById('otherBusinessGroup').classList.remove('has-error');
+  document.getElementById('err-other').style.display = 'none';
+  document.getElementById('tnc-group').classList.remove('has-error');
+  document.getElementById('err-tnc').style.display = 'none';
+
+  // Read values
+  var name     = document.getElementById('fname').value.trim();
+  var phone    = document.getElementById('fphone').value.trim();
+  var email    = document.getElementById('femail').value.trim();
+  var business = document.getElementById('fbusiness').value;
+  var other    = document.getElementById('fotherBusiness').value.trim();
+  var plan     = document.getElementById('fplan').value;
+  var message  = document.getElementById('fmessage').value.trim();
+  var tncOk    = document.getElementById('tncCheck').checked;
+
+  var valid = true;
+  var emailFmt = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email);
+
+  if (!name)                     { setErr('fg-name','err-name','Please enter your full name.'); valid = false; }
+  else                             setOk('fg-name','err-name');
+
+  if (!/^[0-9]{10}$/.test(phone)){ setErr('fg-phone','err-phone','Must be exactly 10 digits (numbers only).'); valid = false; }
+  else                             setOk('fg-phone','err-phone');
+
+  if (!email || !emailFmt)       { setErr('fg-email','err-email','Enter a valid email address (e.g. you@gmail.com).'); valid = false; }
+
+  if (!business)                 { setErr('fg-business','err-business','Please select your business type.'); valid = false; }
+  else                             setOk('fg-business','err-business');
+
+  if (business === 'Other' && !other) {
+    document.getElementById('otherBusinessGroup').classList.add('has-error');
+    document.getElementById('err-other').style.display = 'block';
+    valid = false;
+  } else if (business === 'Other' && other) {
+    document.getElementById('otherBusinessGroup').classList.remove('has-error');
+  }
+
+  if (!plan)                     { setErr('fg-plan','err-plan','Please select a plan or "Not sure yet".'); valid = false; }
+  else                             setOk('fg-plan','err-plan');
+
+  if (!message)                  { setErr('fg-message','err-message','Please write a short message about your project.'); valid = false; }
+  else                             setOk('fg-message','err-message');
+
+  if (!tncOk) {
+    document.getElementById('tnc-group').classList.add('has-error');
+    document.getElementById('err-tnc').style.display = 'block';
+    valid = false;
+  }
+
+  if (!valid) {
+    var firstErr = document.querySelector('.has-error');
+    if (firstErr) firstErr.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    return;
+  }
+
+  // DNS check for email domain
+  if (emailFmt) {
+    var ind = document.getElementById('emailChecking');
+    ind.classList.add('show');
+    var domainOk = await checkEmailDomain(email);
+    ind.classList.remove('show');
+    if (!domainOk) {
+      setErr('fg-email','err-email','This email address does not appear to be valid. Please check and try again.');
+      document.getElementById('fg-email').scrollIntoView({ behavior: 'smooth', block: 'center' });
+      return;
+    }
+    setOk('fg-email','err-email');
+  }
+
+  var bizFinal = (business === 'Other') ? ('Other: ' + other) : business;
+  var msgBody  = 'Hi Chirvox! I\'d like to discuss a website project.\n\n'
+               + 'Name: '         + name     + '\n'
+               + 'Phone: '        + phone    + '\n'
+               + 'Email: '        + email    + '\n'
+               + 'Business: '     + bizFinal + '\n'
+               + 'Interested in: '+ plan     + '\n'
+               + 'Details: '      + message;
+
+  if (via === 'whatsapp') {
+    window.open('https://wa.me/916363797625?text=' + encodeURIComponent(msgBody), '_blank');
+    document.getElementById('popupVia').textContent = '💬 Sent via WhatsApp';
+  } else {
+    var subj = encodeURIComponent('Website Enquiry — ' + bizFinal);
+    window.location.href = 'mailto:chirvox@gmail.com?subject=' + subj + '&body=' + encodeURIComponent(msgBody);
+    document.getElementById('popupVia').textContent = '✉️ Sent via Email';
+  }
+
+  // Show popup
+  document.getElementById('successPopup').classList.add('show');
+
+  // Reset form
+  document.getElementById('fname').value    = '';
+  document.getElementById('fphone').value   = '';
+  document.getElementById('femail').value   = '';
+  document.getElementById('fbusiness').value= '';
+  document.getElementById('fotherBusiness').value = '';
+  document.getElementById('fplan').value    = '';
+  document.getElementById('fmessage').value = '';
+  document.getElementById('tncCheck').checked = false;
+  document.getElementById('otherBusinessGroup').classList.remove('show','has-error');
+  document.getElementById('otherBusinessGroup').style.display = 'none';
+  document.getElementById('tnc-group').classList.remove('has-error');
+  document.getElementById('err-tnc').style.display = 'none';
+  ['fg-name','fg-phone','fg-email','fg-business','fg-plan','fg-message'].forEach(function(id) {
+    var el = document.getElementById(id);
+    if (el) el.classList.remove('has-error','has-success');
+  });
+}
+
+function closePopup() {
+  document.getElementById('successPopup').classList.remove('show');
+}
+document.getElementById('successPopup').addEventListener('click', function(e) {
+  if (e.target === this) closePopup();
+});
+</script>
+</body>
+</html>

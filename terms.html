@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Terms &amp; Conditions — Chirvox</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,500;0,600;0,700;1,300;1,500&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css"/>
+  <style>
+    .nav-logo { display:flex; align-items:center; gap:0.65rem; flex-shrink:0; text-decoration:none; }
+    .nav-brand-name { font-family:'Cormorant Garamond',serif; font-size:1.25rem; font-weight:600; letter-spacing:-0.01em; color:var(--white); white-space:nowrap; }
+    .nav-brand-name span { background:var(--gold-gradient); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+
+    .terms-page { max-width: 860px; margin: 0 auto; padding: 110px 5% 80px; }
+
+    .terms-top-banner {
+      background: var(--black-3);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-xl);
+      padding: 2.5rem 3rem;
+      margin-bottom: 3rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .terms-top-banner::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0; height: 3px;
+      background: var(--gold-gradient);
+    }
+    .terms-top-banner .terms-eyebrow {
+      display: inline-block;
+      font-size: 0.72rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 0.9rem;
+      padding: 0.3rem 0.9rem;
+      border: 1px solid var(--border);
+      border-radius: 100px; background: var(--gold-glow);
+    }
+    .terms-top-banner h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-weight: 600; color: var(--white);
+      letter-spacing: -0.025em; line-height: 1.1;
+      margin-bottom: 1.2rem;
+    }
+    .terms-top-banner h1 em { font-style: italic; font-weight: 300; background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .terms-meta { display: flex; gap: 1.5rem; flex-wrap: wrap; }
+    .terms-meta span { font-size: 0.82rem; color: var(--white-50); display: flex; align-items: center; gap: 0.35rem; }
+
+    /* TOC */
+    .terms-toc {
+      background: var(--black-4);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-lg);
+      padding: 1.8rem 2rem;
+      margin-bottom: 2.5rem;
+    }
+    .terms-toc h3 { font-size: 0.78rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.2rem; }
+    .terms-toc ol { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 0.45rem 2rem; counter-reset: toc-c; }
+    .terms-toc li { counter-increment: toc-c; }
+    .terms-toc a { font-size: 0.86rem; color: var(--white-50); text-decoration: none; display: flex; align-items: center; gap: 0.5rem; transition: color 0.2s; }
+    .terms-toc a::before { content: counter(toc-c, decimal-leading-zero); font-size: 0.7rem; font-weight: 700; color: var(--gold-dark); flex-shrink: 0; }
+    .terms-toc a:hover { color: var(--gold-light); }
+
+    /* Sections */
+    .t-section { margin-bottom: 2.5rem; padding-bottom: 2.5rem; border-bottom: 1px solid var(--border-light); scroll-margin-top: 90px; }
+    .t-section:last-of-type { border-bottom: none; }
+    .t-section-num { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.4rem; }
+    .t-section h2 { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; font-weight: 600; color: var(--white); margin-bottom: 0.9rem; letter-spacing: -0.01em; }
+    .t-section p { font-size: 0.91rem; color: var(--white-50); line-height: 1.8; margin-bottom: 0.75rem; }
+    .t-section ul { list-style: none; margin: 0.3rem 0 0.9rem; display: flex; flex-direction: column; gap: 0.45rem; }
+    .t-section ul li { font-size: 0.9rem; color: var(--white-50); line-height: 1.65; display: flex; align-items: flex-start; gap: 0.6rem; }
+    .t-section ul li::before { content: '→'; color: var(--gold); font-weight: 700; flex-shrink: 0; margin-top: 0.05rem; }
+    .t-section code { background: var(--black-4); border: 1px solid var(--border-light); border-radius: 5px; padding: 0.1rem 0.45rem; font-size: 0.85em; color: var(--gold-light); font-family: monospace; }
+    .t-highlight { background: var(--gold-glow); border: 1px solid var(--border); border-radius: var(--radius); padding: 1rem 1.4rem; margin: 1rem 0; }
+    .t-highlight p { margin-bottom: 0; color: rgba(255,255,255,0.75); }
+
+    /* Footer CTA */
+    .terms-footer-cta { text-align: center; padding: 2.5rem; background: var(--black-3); border: 1px solid var(--border-light); border-radius: var(--radius-xl); margin-top: 2.5rem; }
+    .terms-footer-cta p { font-size: 0.9rem; color: var(--white-50); margin-bottom: 1.5rem; max-width: 480px; margin-left: auto; margin-right: auto; line-height: 1.7; }
+
+    @media(max-width:600px){ .terms-toc ol { grid-template-columns: 1fr; } .terms-top-banner { padding: 1.5rem; } }
+  </style>
+</head>
+<body>
+
+<nav class="navbar" id="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">
+      <img src="logo.png" alt="Chirvox Logo" class="logo-img"/>
+      <span class="nav-brand-name"> <span>Chirvox</span></span>
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="portfolio.html">Portfolio</a></li>
+      <li><a href="pricing.html">Pricing</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <a href="https://wa.me/916363797625?text=Hi%2C%20I'm%20interested%20in%20a%20website!" class="btn-gold" target="_blank" rel="noopener">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      WhatsApp
+    </a>
+    <button class="hamburger" id="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<div class="terms-page">
+
+  <!-- Header Banner -->
+  <div class="terms-top-banner">
+    <div class="terms-eyebrow">Legal Document</div>
+    <h1>Terms &amp; <em>Conditions</em></h1>
+    <div class="terms-meta">
+      <span>🏢 Business Name: <strong style="color:var(--white-80)">Chirvox</strong></span>
+    </div>
+  </div>
+
+  <!-- Table of Contents -->
+  <div class="terms-toc">
+    <h3>Table of Contents</h3>
+    <ol>
+      <li><a href="#t1">Introduction</a></li>
+      <li><a href="#t2">Scope of Services</a></li>
+      <li><a href="#t3">Payment Terms</a></li>
+      <li><a href="#t4">Revisions Policy</a></li>
+      <li><a href="#t5">Project Timeline</a></li>
+      <li><a href="#t6">Client Responsibilities</a></li>
+      <li><a href="#t7">Domain and Hosting</a></li>
+      <li><a href="#t8">Free Hosting Setup</a></li>
+      <li><a href="#t9">Third-Party Services</a></li>
+      <li><a href="#t10">Refund Policy</a></li>
+      <li><a href="#t11">Ownership and Delivery</a></li>
+      <li><a href="#t12">Hosting Access &amp; Control</a></li>
+      <li><a href="#t13">Website Transfer</a></li>
+      <li><a href="#t14">Maintenance and Support</a></li>
+      <li><a href="#t15">Limitation of Liability</a></li>
+      <li><a href="#t16">Portfolio Rights</a></li>
+      <li><a href="#t17">Termination</a></li>
+      <li><a href="#t18">Governing Law</a></li>
+      <li><a href="#t19">Acceptance</a></li>
+    </ol>
+  </div>
+
+  <div class="t-highlight">
+    <p>💬 If you're unhappy with anything, please reach out first. We will always try to resolve issues before any cancellation discussion.</p>
+  </div>
+
+  <!-- Section 1 -->
+  <div class="t-section" id="t1">
+    <div class="t-section-num">Section 01</div>
+    <h2>Introduction</h2>
+    <p>These Terms and Conditions govern the provision of website design and development services by Chirvox. By engaging our services, the client agrees to all terms stated below.</p>
+  </div>
+
+  <!-- Section 2 -->
+  <div class="t-section" id="t2">
+    <div class="t-section-num">Section 02</div>
+    <h2>Scope of Services</h2>
+    <p>Services will be provided based on the agreed project scope, including number of pages, features, and functionality. Any additional features or changes requested beyond the agreed scope will be charged separately.</p>
+  </div>
+
+  <!-- Section 3 -->
+  <div class="t-section" id="t3">
+    <div class="t-section-num">Section 03</div>
+    <h2>Payment Terms</h2>
+    <ul>
+      <li>A minimum of 50% advance payment is required before starting the project.</li>
+      <li>The remaining balance must be paid before final delivery or website handover.</li>
+      <li>Work will not begin without advance payment.</li>
+      <li>Failure to complete payment may result in suspension or withholding of services.</li>
+    </ul>
+  </div>
+
+  <!-- Section 4 -->
+  <div class="t-section" id="t4">
+    <div class="t-section-num">Section 04</div>
+    <h2>Revisions Policy</h2>
+    <ul>
+      <li>The project includes up to 2–3 revisions unless otherwise agreed.</li>
+      <li>Additional revisions or major changes will incur extra charges.</li>
+    </ul>
+  </div>
+
+  <!-- Section 5 -->
+  <div class="t-section" id="t5">
+    <div class="t-section-num">Section 05</div>
+    <h2>Project Timeline</h2>
+    <ul>
+      <li>Delivery timelines will be agreed upon before starting the project.</li>
+      <li>Delays caused by the client (late content, approvals, etc.) may extend the timeline.</li>
+      <li>The developer is not responsible for delays caused by third-party services.</li>
+    </ul>
+  </div>
+
+  <!-- Section 6 -->
+  <div class="t-section" id="t6">
+    <div class="t-section-num">Section 06</div>
+    <h2>Client Responsibilities</h2>
+    <p>The client agrees to provide all required materials, including:</p>
+    <ul>
+      <li>Text content</li>
+      <li>Images</li>
+      <li>Business information</li>
+    </ul>
+    <p>The client is responsible for the accuracy and legality of all provided content.</p>
+  </div>
+
+  <!-- Section 7 -->
+  <div class="t-section" id="t7">
+    <div class="t-section-num">Section 07</div>
+    <h2>Domain and Hosting</h2>
+    <ul>
+      <li>Domain and hosting are not included unless explicitly mentioned.</li>
+      <li>If included, it will be clearly specified in the project agreement.</li>
+      <li>The client is responsible for domain renewal and access to their domain account.</li>
+    </ul>
+  </div>
+
+  <!-- Section 8 -->
+  <div class="t-section" id="t8">
+    <div class="t-section-num">Section 08</div>
+    <h2>Free Hosting (GitHub-Based Setup)</h2>
+    <ul>
+      <li>Websites may be hosted using free hosting services (e.g., GitHub-based hosting), which may include a subdomain (e.g.yourname.github.io/project).</li>
+      <li>This setup is suitable for basic websites and may have limitations.</li>
+      <li>A custom domain (e.g., .com, .in) is not included by default and can be added as a paid upgrade.</li>
+    </ul>
+  </div>
+
+  <!-- Section 9 -->
+  <div class="t-section" id="t9">
+    <div class="t-section-num">Section 09</div>
+    <h2>Third-Party Services</h2>
+    <ul>
+      <li>The website may use third-party tools or services (e.g., hosting platforms, APIs, backend tools).</li>
+      <li>Chirvox is not responsible for downtime, policy changes, or failures of these services.</li>
+    </ul>
+  </div>
+
+  <!-- Section 10 -->
+  <div class="t-section" id="t10">
+    <div class="t-section-num">Section 10</div>
+    <h2>Refund Policy</h2>
+    <ul>
+      <li>Advance payments are non-refundable once the project has started.</li>
+      <li>No refunds will be issued after project completion or delivery.</li>
+    </ul>
+  </div>
+
+  <!-- Section 11 -->
+  <div class="t-section" id="t11">
+    <div class="t-section-num">Section 11</div>
+    <h2>Ownership and Delivery</h2>
+    <ul>
+      <li>Full ownership of the website will be transferred only after complete payment.</li>
+      <li>Until full payment is made, all rights remain with Chirvox.</li>
+      <li>Final delivery may include: live website link and website files (if requested).</li>
+    </ul>
+  </div>
+
+  <!-- Section 12 -->
+  <div class="t-section" id="t12">
+    <div class="t-section-num">Section 12</div>
+    <h2>Hosting Access and Control</h2>
+    <ul>
+      <li>If the website is hosted under the developer's account, access may be limited unless otherwise agreed.</li>
+      <li>Full transfer or migration can be requested after full payment.</li>
+    </ul>
+  </div>
+
+  <!-- Section 13 -->
+  <div class="t-section" id="t13">
+    <div class="t-section-num">Section 13</div>
+    <h2>Website Transfer</h2>
+    <p>Upon full payment, the client may request:</p>
+    <ul>
+      <li>Website file transfer</li>
+      <li>Migration to their own hosting</li>
+    </ul>
+    <ul>
+      <li>Assistance may be provided at additional cost.</li>
+      <li>The developer is not responsible for issues after transfer.</li>
+    </ul>
+  </div>
+
+  <!-- Section 14 -->
+  <div class="t-section" id="t14">
+    <div class="t-section-num">Section 14</div>
+    <h2>Maintenance and Support</h2>
+    <ul>
+      <li>Free support will be provided for 7–14 days after delivery (minor fixes only).</li>
+      <li>Ongoing maintenance and updates will be charged separately.</li>
+    </ul>
+  </div>
+
+  <!-- Section 15 -->
+  <div class="t-section" id="t15">
+    <div class="t-section-num">Section 15</div>
+    <h2>Limitation of Liability</h2>
+    <p>Chirvox shall not be held liable for:</p>
+    <ul>
+      <li>Business losses or loss of revenue</li>
+      <li>Website downtime caused by hosting providers</li>
+      <li>Third-party service failures</li>
+      <li>Security issues beyond reasonable control</li>
+    </ul>
+  </div>
+
+  <!-- Section 16 -->
+  <div class="t-section" id="t16">
+    <div class="t-section-num">Section 16</div>
+    <h2>Portfolio Rights</h2>
+    <p>The developer reserves the right to showcase the completed project in their portfolio unless otherwise agreed in writing.</p>
+  </div>
+
+  <!-- Section 17 -->
+  <div class="t-section" id="t17">
+    <div class="t-section-num">Section 17</div>
+    <h2>Termination</h2>
+    <ul>
+      <li>Either party may terminate the project with written notice.</li>
+      <li>The client agrees to pay for work completed up to the termination date.</li>
+    </ul>
+  </div>
+
+  <!-- Section 18 -->
+  <div class="t-section" id="t18">
+    <div class="t-section-num">Section 18</div>
+    <h2>Governing Law</h2>
+    <p>These Terms shall be governed by the laws of <strong style="color:var(--white-80)">India</strong>. Any disputes arising shall be subject to the jurisdiction of the courts of India.</p>
+  </div>
+
+  <!-- Section 19 -->
+  <div class="t-section" id="t19">
+    <div class="t-section-num">Section 19</div>
+    <h2>Acceptance</h2>
+    <div class="t-highlight">
+      <p>✅ By proceeding with the project or making payment, the client confirms that they have <strong style="color:var(--white-80)">read, understood, and agreed</strong> to these Terms and Conditions.</p>
+    </div>
+  </div>
+
+  <!-- Footer CTA -->
+  <div class="terms-footer-cta">
+    <p>Questions about these terms? Contact us before proceeding — we're happy to clarify anything.</p>
+    <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap">
+      <a href="contact.html" class="btn-gold-lg">← Back to Contact</a>
+      <a href="https://wa.me/916363797625?text=Hi%2C%20I%20have%20a%20question%20about%20the%20Terms%20and%20Conditions" class="btn-outline-lg" target="_blank" rel="noopener">💬 Ask on WhatsApp</a>
+    </div>
+  </div>
+
+</div>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" style="display:inline-flex;align-items:center;gap:0.65rem;text-decoration:none;margin-bottom:1rem;">
+          <img src="logo.png" alt="Chirvox" style="height:50px;width:auto"/>
+          <span style="font-family:Cormorant Garamond,serif;font-size:1.15rem;font-weight:600;color:#fff;letter-spacing:-0.01em;white-space:nowrap"> <span style="background:linear-gradient(135deg,#c9a84c 0%,#f0d080 45%,#c9a84c 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">Chirvox</span></span>
+        </a>
+        <p>Premium web development for small businesses. Professional websites that help you grow.</p>
+        <div class="footer-social">
+          <a href="https://wa.me/916363797625" target="_blank" class="social-btn">💬 WhatsApp</a>
+          <a href="mailto:chirvox@gmail.com" class="social-btn">✉️ Email</a>
+        </div>
+      </div>
+      <div class="footer-col"><h4>Pages</h4><ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="portfolio.html">Portfolio</a></li>
+        <li><a href="pricing.html">Pricing</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul></div>
+      <div class="footer-col"><h4>Services</h4><ul>
+        <li><a href="services.html#svc-business-website">Business Website</a></li>
+        <li><a href="services.html#svc-landing-page">Landing Page</a></li>
+        <li><a href="services.html#svc-redesign">Website Redesign</a></li>
+        <li><a href="services.html#svc-seo">SEO Setup</a></li>
+      </ul></div>
+      <div class="footer-col"><h4>Legal</h4><ul>
+        <li><a href="terms.html">Terms &amp; Conditions</a></li>
+        <li><a href="https://wa.me/916363797625" target="_blank">WhatsApp Us</a></li>
+        <li><a href="mailto:chirvox@gmail.com">chirvox@gmail.com</a></li>
+      </ul></div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 Chirvox. All rights reserved.</span>
+      <span>Made with ♥ in India</span>
+      <a href="terms.html" style="color:rgba(255,255,255,0.2);font-size:0.8rem;text-decoration:none" onmouseover="this.style.color='#c9a84c'" onmouseout="this.style.color='rgba(255,255,255,0.2)'">Terms &amp; Conditions</a>
+    </div>
+  </div>
+</footer>
+
+<script src="main.js"></script>
+</body>
+</html>

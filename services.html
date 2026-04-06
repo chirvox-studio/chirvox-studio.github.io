@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Services — Chirvox</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,500;0,600;0,700;1,300;1,500&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css"/>
+<style>
+    .nav-logo { display:flex; align-items:center; gap:0.65rem; flex-shrink:0; text-decoration:none; }
+    .nav-brand-name {
+      font-family:'Cormorant Garamond',serif;
+      font-size:1.25rem; font-weight:600; letter-spacing:-0.01em;
+      color:var(--white); white-space:nowrap;
+    }
+    .nav-brand-name span {
+      background:var(--gold-gradient);
+      -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;
+    }
+  </style>
+</head>
+<body>
+
+<nav class="navbar" id="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">
+      <img src="logo.png" alt="Chirvox Logo" class="logo-img"/>
+      <span class="nav-brand-name"> <span>Chirvox</span></span>
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="services.html" class="active">Services</a></li>
+      <li><a href="portfolio.html">Portfolio</a></li>
+      <li><a href="pricing.html">Pricing</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <a href="https://wa.me/916363797625?text=Hi%2C%20I'm%20interested%20in%20a%20website!" class="btn-gold" target="_blank" rel="noopener">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      WhatsApp
+    </a>
+    <button class="hamburger" id="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<div class="page-hero">
+  <div class="page-hero-eyebrow">What We Offer</div>
+  <h1>Professional <em>Web Services</em><br>For Every Business</h1>
+  <p>From a simple landing page to a full business website — we build exactly what your business needs to grow online.</p>
+  <a href="https://wa.me/916363797625?text=Hi%2C%20I'd%20like%20to%20discuss%20a%20project!" class="btn-gold-lg" target="_blank" rel="noopener">💬 Discuss Your Project</a>
+</div>
+
+<!-- MAIN SERVICES -->
+<section class="section-dark">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="section-eyebrow">Core Services</div>
+      <h2 class="section-title">Everything You Need to <em>Succeed Online</em></h2>
+    </div>
+    <div class="services-full-grid">
+      <div class="svc-card reveal" id="svc-business-website">
+        <div class="svc-icon-wrap">🌐</div>
+        <h3>Business Website</h3>
+        <p>A complete multi-page website that represents your business professionally 24/7. Designed to impress and convert visitors into real customers.</p>
+        <ul class="svc-features">
+          <li>Up to 5 custom pages</li>
+          <li>Mobile-friendly on all devices</li>
+          <li>WhatsApp & contact integration</li>
+          <li>Google Maps embed</li>
+          <li>Basic SEO optimization</li>
+          <li>Fast loading speed</li>
+        </ul>
+      </div>
+      <div class="svc-card reveal" id="svc-landing-page">
+        <div class="svc-icon-wrap">🎯</div>
+        <h3>Landing Page Design</h3>
+        <p>A single, powerful page built around one goal — capturing leads, driving phone calls, or promoting a specific offer or service.</p>
+        <ul class="svc-features">
+          <li>Single-page focused design</li>
+          <li>Clear call-to-action sections</li>
+          <li>WhatsApp button integration</li>
+          <li>Testimonials & social proof</li>
+          <li>Lead capture form</li>
+          <li>Delivered in 3–5 days</li>
+        </ul>
+      </div>
+      <div class="svc-card reveal" id="svc-redesign">
+        <div class="svc-icon-wrap">🔄</div>
+        <h3>Website Redesign</h3>
+        <p>Your existing website looking old or not working on mobile? We'll give it a complete modern makeover that actually helps your business.</p>
+        <ul class="svc-features">
+          <li>Full design overhaul</li>
+          <li>Mobile-first rebuild</li>
+          <li>Speed & performance boost</li>
+          <li>Modern UI/UX</li>
+          <li>Content migration</li>
+          <li>Better SEO structure</li>
+        </ul>
+      </div>
+      <div class="svc-card reveal" id="svc-seo">
+        <div class="svc-icon-wrap">🔍</div>
+        <h3>Basic SEO Setup</h3>
+        <p>Help your business appear in Google search results when local customers are looking for services like yours. Essential for any local business.</p>
+        <ul class="svc-features">
+          <li>Meta titles & descriptions</li>
+          <li>Google Search Console setup</li>
+          <li>Local SEO basics</li>
+          <li>Image optimization</li>
+          <li>Sitemap creation</li>
+          <li>Google Analytics setup</li>
+        </ul>
+      </div>
+      <div class="svc-card reveal">
+        <div class="svc-icon-wrap">💬</div>
+        <h3>WhatsApp Integration</h3>
+        <p>Add a professional WhatsApp button to any website so customers can contact you instantly. Increases inquiries dramatically for local businesses.</p>
+        <ul class="svc-features">
+          <li>Floating WhatsApp button</li>
+          <li>Custom welcome message</li>
+          <li>Click-to-chat setup</li>
+          <li>Works on all devices</li>
+          <li>Multiple number support</li>
+        </ul>
+      </div>
+      <div class="svc-card reveal">
+        <div class="svc-icon-wrap">🛠️</div>
+        <h3>Maintenance & Support</h3>
+        <p>Keep your website running smoothly with regular updates, content changes, and technical support whenever you need it.</p>
+        <ul class="svc-features">
+          <li>Content updates & edits</li>
+          <li>Bug fixes & troubleshooting</li>
+          <li>Performance monitoring</li>
+          <li>Monthly check-ins</li>
+          <li>WhatsApp priority support</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="section-darker">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="section-eyebrow">How It Works</div>
+      <h2 class="section-title">From Idea to <em>Live Website</em></h2>
+      <p class="section-sub">A simple, transparent process with no surprises. You're informed every step of the way.</p>
+    </div>
+    <div class="process-grid">
+      <div class="process-step reveal">
+        <div class="process-num">01</div>
+        <h4>Discovery Call</h4>
+        <p>We discuss your business, goals, and what you want your website to achieve.</p>
+      </div>
+      <div class="process-step reveal">
+        <div class="process-num">02</div>
+        <h4>Design & Plan</h4>
+        <p>We create the design layout and structure, and share it with you for approval.</p>
+      </div>
+      <div class="process-step reveal">
+        <div class="process-num">03</div>
+        <h4>Development</h4>
+        <p>We build your website with clean code, mobile-first design, and fast loading.</p>
+      </div>
+      <div class="process-step reveal">
+        <div class="process-num">04</div>
+        <h4>Review & Revisions</h4>
+        <p>You review the website and we refine it until you're completely happy.</p>
+      </div>
+      <div class="process-step reveal">
+        <div class="process-num">05</div>
+        <h4>Launch 🚀</h4>
+        <p>Your website goes live. We handle the hosting setup and final checks for you.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-band">
+  <div class="cta-glow"></div>
+  <div class="container cta-inner reveal">
+    <div>
+      <h2 class="cta-title">Not sure which service <em>you need?</em></h2>
+      <p class="cta-sub">Message us on WhatsApp and we'll guide you to the perfect solution for your business.</p>
+    </div>
+    <div class="cta-actions">
+      <a href="https://wa.me/916363797625?text=Hi%2C%20I%20need%20help%20choosing%20the%20right%20service%20for%20my%20business!" class="btn-gold-lg" target="_blank" rel="noopener">💬 Ask on WhatsApp</a>
+      <a href="pricing.html" class="btn-outline-lg">View Pricing</a>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" style="display:inline-flex;align-items:center;gap:0.65rem;text-decoration:none;margin-bottom:1rem;">
+          <img src="logo.png" alt="Chirvox" style="height:50px;width:auto"/>
+          <span style="font-family:Cormorant Garamond,serif;font-size:1.15rem;font-weight:600;color:#fff;letter-spacing:-0.01em;white-space:nowrap"> <span style="background:linear-gradient(135deg,#c9a84c 0%,#f0d080 45%,#c9a84c 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">Chirvox</span></span>
+        </a>
+        <p>Premium web development for small businesses. Professional websites that help you grow.</p>
+        <div class="footer-social">
+          <a href="https://wa.me/916363797625" target="_blank" class="social-btn">💬 WhatsApp</a>
+          <a href="mailto:chirvox@gmail.com" class="social-btn">✉️ Email</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Pages</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="portfolio.html">Portfolio</a></li>
+          <li><a href="pricing.html">Pricing</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Services</h4>
+        <ul>
+          <li><a href="services.html#svc-business-website">Business Website</a></li>
+          <li><a href="services.html#svc-landing-page">Landing Page</a></li>
+          <li><a href="services.html#svc-redesign">Website Redesign</a></li>
+          <li><a href="services.html#svc-seo">SEO Setup</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="https://wa.me/916363797625" target="_blank">WhatsApp Us</a></li>
+          <li><a href="mailto:chirvox@gmail.com">chirvox@gmail.com</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 Chirvox. All rights reserved.</span>
+      <span>Made with ♥ in India</span>
+    </div>
+  </div>
+</footer>

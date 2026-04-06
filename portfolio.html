@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Portfolio — Chirvox</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,500;0,600;0,700;1,300;1,500&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css"/>
+<style>
+    .nav-logo { display:flex; align-items:center; gap:0.65rem; flex-shrink:0; text-decoration:none; }
+    .nav-brand-name {
+      font-family:'Cormorant Garamond',serif;
+      font-size:1.25rem; font-weight:600; letter-spacing:-0.01em;
+      color:var(--white); white-space:nowrap;
+    }
+    .nav-brand-name span {
+      background:var(--gold-gradient);
+      -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;
+    }
+  </style>
+</head>
+<body>
+
+<nav class="navbar" id="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">
+      <img src="logo.png" alt="Chirvox Logo" class="logo-img"/>
+      <span class="nav-brand-name"> <span>Chirvox</span></span>
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="portfolio.html" class="active">Portfolio</a></li>
+      <li><a href="pricing.html">Pricing</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <a href="https://wa.me/916363797625?text=Hi%2C%20I'm%20interested%20in%20a%20website!" class="btn-gold" target="_blank" rel="noopener">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      WhatsApp
+    </a>
+    <button class="hamburger" id="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<div class="page-hero">
+  <div class="page-hero-eyebrow">What We Offer</div>
+  <h1>Professional <em>Web Services</em><br>For Every Business</h1>
+  <p>From a simple landing page to a full business website — we build exactly what your business needs to grow online.</p>
+  <a href="https://wa.me/916363797625?text=Hi%2C%20I'd%20like%20to%20discuss%20a%20project!" class="btn-gold-lg" target="_blank" rel="noopener">💬 Discuss Your Project</a>
+</div>
+
+
+<div class="page-hero">
+  <div class="page-hero-eyebrow">Our Work</div>
+  <h1>Websites Built for <em>Real Businesses</em></h1>
+  <p>Each project is custom-designed from scratch. No templates, no shortcuts — just professional websites built to grow your business.</p>
+</div>
+
+<section class="section-dark">
+  <div class="container">
+    <div class="portfolio-full-grid">
+
+      <div class="port-card reveal">
+        <div class="port-visual pv-restaurant">
+          <div class="port-visual-inner">
+            <div class="pv-mockbar"><div class="pv-dots"><span></span><span></span><span></span></div><div class="pv-urlbar"></div></div>
+            <div class="pv-hero-block">🍛</div>
+            <div class="pv-row"><div class="pv-block"></div><div class="pv-block"></div><div class="pv-block"></div></div>
+          </div>
+        </div>
+        <div class="port-body">
+          <span class="port-tag">Restaurant</span>
+          <h3>Spice Garden Restaurant</h3>
+          <p>Full restaurant website with digital menu, location map, gallery, and WhatsApp reservation button. The owner saw a 40% increase in table bookings after launch.</p>
+          <div class="port-tags">
+            <span>5 Pages</span><span>WhatsApp Integration</span><span>Menu Section</span><span>Mobile-First</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="port-card reveal">
+        <div class="port-visual pv-gym">
+          <div class="port-visual-inner">
+            <div class="pv-mockbar"><div class="pv-dots"><span></span><span></span><span></span></div><div class="pv-urlbar"></div></div>
+            <div class="pv-hero-block">🏋️</div>
+            <div class="pv-row"><div class="pv-block"></div><div class="pv-block"></div><div class="pv-block"></div></div>
+          </div>
+        </div>
+        <div class="port-body">
+          <span class="port-tag">Fitness & Gym</span>
+          <h3>IronEdge Fitness</h3>
+          <p>Bold, high-energy gym website with membership plans, trainer profiles, batch timings, and a free trial class booking form. New member inquiries tripled within a month.</p>
+          <div class="port-tags">
+            <span>5 Pages</span><span>Booking Form</span><span>Membership Plans</span><span>SEO Setup</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="port-card reveal">
+        <div class="port-visual pv-shop">
+          <div class="port-visual-inner">
+            <div class="pv-mockbar"><div class="pv-dots"><span></span><span></span><span></span></div><div class="pv-urlbar"></div></div>
+            <div class="pv-hero-block">🧵</div>
+            <div class="pv-row"><div class="pv-block"></div><div class="pv-block"></div><div class="pv-block"></div></div>
+          </div>
+        </div>
+        <div class="port-body">
+          <span class="port-tag">Retail Shop</span>
+          <h3>Navrang Textiles</h3>
+          <p>Clean catalogue-style website for a fabric shop with product categories, WhatsApp inquiry button, and store hours. Customers now call ahead before visiting.</p>
+          <div class="port-tags">
+            <span>4 Pages</span><span>Product Catalogue</span><span>WhatsApp Button</span><span>Fast Loading</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="port-card reveal">
+        <div class="port-visual pv-salon">
+          <div class="port-visual-inner">
+            <div class="pv-mockbar"><div class="pv-dots"><span></span><span></span><span></span></div><div class="pv-urlbar"></div></div>
+            <div class="pv-hero-block">💅</div>
+            <div class="pv-row"><div class="pv-block"></div><div class="pv-block"></div><div class="pv-block"></div></div>
+          </div>
+        </div>
+        <div class="port-body">
+          <span class="port-tag">Beauty & Salon</span>
+          <h3>Glamour Studio</h3>
+          <p>Elegant, feminine website for a beauty salon with services menu, pricing, photo gallery, and appointment booking via WhatsApp. Bookings increased significantly after launch.</p>
+          <div class="port-tags">
+            <span>4 Pages</span><span>Service Menu</span><span>Gallery</span><span>Appointment Booking</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="port-card reveal">
+        <div class="port-visual pv-cafe">
+          <div class="port-visual-inner">
+            <div class="pv-mockbar"><div class="pv-dots"><span></span><span></span><span></span></div><div class="pv-urlbar"></div></div>
+            <div class="pv-hero-block">☕</div>
+            <div class="pv-row"><div class="pv-block"></div><div class="pv-block"></div><div class="pv-block"></div></div>
+          </div>
+        </div>
+        <div class="port-body">
+          <span class="port-tag">Café</span>
+          <h3>Brew & Co. Café</h3>
+          <p>Warm, inviting café website with digital menu, atmosphere gallery, and event announcements. Built to bring in both first-time visitors and loyal regulars.</p>
+          <div class="port-tags">
+            <span>3 Pages</span><span>Digital Menu</span><span>Photo Gallery</span><span>Events Section</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="port-card reveal">
+        <div class="port-visual pv-medical">
+          <div class="port-visual-inner">
+            <div class="pv-mockbar"><div class="pv-dots"><span></span><span></span><span></span></div><div class="pv-urlbar"></div></div>
+            <div class="pv-hero-block">🏥</div>
+            <div class="pv-row"><div class="pv-block"></div><div class="pv-block"></div><div class="pv-block"></div></div>
+          </div>
+        </div>
+        <div class="port-body">
+          <span class="port-tag">Healthcare</span>
+          <h3>HealthFirst Clinic</h3>
+          <p>Professional medical clinic website with doctor profiles, consultation services, appointment booking, and patient trust-building content. Clean and reassuring design.</p>
+          <div class="port-tags">
+            <span>5 Pages</span><span>Doctor Profiles</span><span>Appointment Form</span><span>Local SEO</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="cta-band">
+  <div class="cta-glow"></div>
+  <div class="container cta-inner reveal">
+    <div>
+      <h2 class="cta-title">Your business could be <em>next</em></h2>
+      <p class="cta-sub">Let's build something professional for your business. Starting at just ₹4,999.</p>
+    </div>
+    <div class="cta-actions">
+      <a href="https://wa.me/916363797625?text=Hi%2C%20I%20saw%20your%20portfolio%20and%20I'm%20interested%20in%20a%20website!" class="btn-gold-lg" target="_blank" rel="noopener">💬 Get Started</a>
+      <a href="pricing.html" class="btn-outline-lg">See Pricing</a>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" style="display:inline-flex;align-items:center;gap:0.65rem;text-decoration:none;margin-bottom:1rem;">
+          <img src="logo.png" alt="Chirvox" style="height:50px;width:auto"/>
+          <span style="font-family:Cormorant Garamond,serif;font-size:1.15rem;font-weight:600;color:#fff;letter-spacing:-0.01em;white-space:nowrap"> <span style="background:linear-gradient(135deg,#c9a84c 0%,#f0d080 45%,#c9a84c 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">Chirvox</span></span>
+        </a>
+        <p>Premium web development for small businesses. Professional websites that help you grow.</p>
+        <div class="footer-social">
+          <a href="https://wa.me/916363797625" target="_blank" class="social-btn">💬 WhatsApp</a>
+          <a href="mailto:chirvox@gmail.com" class="social-btn">✉️ Email</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Pages</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="portfolio.html">Portfolio</a></li>
+          <li><a href="pricing.html">Pricing</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Services</h4>
+        <ul>
+          <li><a href="services.html#svc-business-website">Business Website</a></li>
+          <li><a href="services.html#svc-landing-page">Landing Page</a></li>
+          <li><a href="services.html#svc-redesign">Website Redesign</a></li>
+          <li><a href="services.html#svc-seo">SEO Setup</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="https://wa.me/916363797625" target="_blank">WhatsApp Us</a></li>
+          <li><a href="mailto:chirvox@gmail.com">chirvox@gmail.com</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 Chirvox. All rights reserved.</span>
+      <span>Made with ♥ in India</span>
+    </div>
+  </div>
+</footer>

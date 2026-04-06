@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Pricing — Chirvox</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,500;0,600;0,700;1,300;1,500&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css"/>
+  <style>
+    /* NAV BRAND */
+    .nav-logo { display:flex; align-items:center; gap:0.65rem; flex-shrink:0; text-decoration:none; }
+    .nav-brand-name { font-family:'Cormorant Garamond',serif; font-size:1.25rem; font-weight:600; letter-spacing:-0.01em; color:var(--white); white-space:nowrap; }
+    .nav-brand-name span { background:var(--gold-gradient); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+
+    /* STRIKETHROUGH ORIGINAL PRICE */
+    .price-original {
+      font-size:1.1rem; font-weight:600;
+      color:rgba(255,255,255,0.25);
+      text-decoration:line-through;
+      text-decoration-color:rgba(255,80,80,0.6);
+      text-decoration-thickness:2px;
+      letter-spacing:-0.01em;
+      margin-bottom:0.2rem;
+      display:block;
+    }
+    .price-save-badge {
+      display:inline-block;
+      background:rgba(255,80,80,0.15);
+      border:1px solid rgba(255,80,80,0.3);
+      color:#ff7070;
+      font-size:0.7rem; font-weight:700;
+      letter-spacing:0.06em; text-transform:uppercase;
+      padding:0.2rem 0.65rem; border-radius:100px;
+      margin-bottom:0.6rem;
+    }
+
+    /* ADD-ON CARDS */
+    .addons-section { margin-top:3rem; }
+    .addons-header { display:flex; align-items:flex-start; justify-content:space-between; gap:1.5rem; flex-wrap:wrap; margin-bottom:2rem; }
+    .addons-header h3 { font-family:'Cormorant Garamond',serif; font-size:1.9rem; font-weight:600; color:var(--white); letter-spacing:-0.02em; margin-bottom:0.4rem; }
+    .addons-header p { font-size:0.9rem; color:var(--white-50); max-width:440px; }
+    .btn-gold-sm { display:inline-flex; align-items:center; gap:0.4rem; background:var(--gold-gradient); color:var(--black); font-weight:700; font-size:0.82rem; padding:0.6rem 1.4rem; border-radius:100px; white-space:nowrap; flex-shrink:0; transition:opacity 0.2s,transform 0.15s; text-decoration:none; margin-top:0.3rem; }
+    .btn-gold-sm:hover { opacity:0.9; transform:translateY(-1px); }
+
+    .addon-cards-grid { display:grid; grid-template-columns:repeat(auto-fit, minmax(280px,1fr)); gap:1.2rem; }
+    .addon-card { background:var(--black-4); border:1px solid var(--border-light); border-radius:var(--radius-lg); padding:1.6rem; transition:border-color 0.25s,transform 0.2s,box-shadow 0.25s; position:relative; }
+    .addon-card:hover { border-color:var(--border); transform:translateY(-4px); box-shadow:0 16px 40px rgba(0,0,0,0.4),0 0 20px rgba(201,168,76,0.06); }
+    .addon-card-top { display:flex; align-items:center; justify-content:space-between; margin-bottom:1rem; }
+    .addon-card-icon { width:48px; height:48px; background:var(--gold-glow); border:1px solid var(--border); border-radius:12px; display:grid; place-items:center; font-size:1.4rem; }
+    .addon-card-badge { font-size:0.68rem; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; color:var(--black); background:var(--gold-gradient); padding:0.2rem 0.65rem; border-radius:100px; }
+    .addon-card h4 { font-family:'Cormorant Garamond',serif; font-size:1.15rem; font-weight:600; color:var(--white); margin-bottom:0.4rem; letter-spacing:-0.01em; }
+    .addon-card > p { font-size:0.85rem; color:var(--white-50); line-height:1.55; margin-bottom:1rem; }
+    .addon-card-check { display:flex; align-items:center; gap:0.5rem; font-size:0.82rem; color:var(--white-50); margin-bottom:0.35rem; }
+    .addon-card-check span { width:18px; height:18px; flex-shrink:0; background:var(--gold-glow); border:1px solid var(--border); color:var(--gold); border-radius:50%; display:grid; place-items:center; font-size:0.6rem; font-weight:800; }
+
+    /* FAQ */
+    .faq-grid { display:grid; grid-template-columns:repeat(auto-fit, minmax(300px,1fr)); gap:1.2rem; }
+    .faq-item { background:var(--black-3); border:1px solid var(--border-light); border-radius:var(--radius-lg); padding:1.8rem; transition:border-color 0.2s; }
+    .faq-item:hover { border-color:var(--border); }
+    .faq-item h4 { font-size:0.98rem; font-weight:600; color:var(--white); margin-bottom:0.6rem; }
+    .faq-item p { font-size:0.88rem; color:var(--white-50); line-height:1.65; }
+  </style>
+</head>
+<body>
+
+<nav class="navbar" id="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">
+      <img src="logo.png" alt="Chirvox Logo" class="logo-img"/>
+      <span class="nav-brand-name"> <span>Chirvox</span></span>
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="portfolio.html">Portfolio</a></li>
+      <li><a href="pricing.html" class="active">Pricing</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <a href="https://wa.me/916363797625?text=Hi%2C%20I'm%20interested%20in%20a%20website!" class="btn-gold" target="_blank" rel="noopener">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      WhatsApp
+    </a>
+    <button class="hamburger" id="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<div class="page-hero">
+  <div class="page-hero-eyebrow">Transparent Pricing</div>
+  <h1>Simple, <em>Honest Pricing</em><br>No Surprises</h1>
+  <p>No hidden fees. No confusing packages. A clear price for a professional website that works for your business.</p>
+</div>
+
+<section class="section-dark">
+  <div class="container">
+
+    <!-- PRICING CARDS -->
+    <div class="pricing-grid">
+
+      <div class="price-card reveal">
+        <div class="price-plan">Starter Plan</div>
+        <span class="price-save-badge">🔥 Save ₹2,000</span>
+        <span class="price-original">₹6,999</span>
+        <div class="price-amount"><sub>₹</sub>4,999</div>
+        <div class="price-note">One-time payment · No monthly fees</div>
+        <div class="price-divider"></div>
+        <ul class="price-features">
+          <li><span class="check">✓</span> 3–5 custom pages</li>
+          <li><span class="check">✓</span> Mobile-friendly design</li>
+          <li><span class="check">✓</span> Free hosting (GitHub Pages)</li>
+          <li><span class="check">✓</span> Basic contact form</li>
+          <li><span class="check">✓</span> WhatsApp button</li>
+          <li><span class="check">✓</span> Delivered in 2–7 days</li>
+          <li><span class="check">✓</span> 2 round of revisions</li>
+        </ul>
+        <a href="https://wa.me/916363797625?text=Hi%2C%20I'm%20interested%20in%20the%20Starter%20Plan%20(%E2%82%B94999)" class="btn-price outline-btn" target="_blank" rel="noopener">Get Started →</a>
+      </div>
+
+      <div class="price-card featured reveal">
+        <div class="price-badge">⭐ Most Popular</div>
+        <div class="price-plan">Business Plan</div>
+        <span class="price-save-badge">🔥 Save ₹3,000</span>
+        <span class="price-original">₹12,999</span>
+        <div class="price-amount"><sub>₹</sub>9,999</div>
+        <div class="price-note">One-time payment · No monthly fees</div>
+        <div class="price-divider"></div>
+        <ul class="price-features">
+          <li><span class="check">✓</span> Up to 10 custom pages</li>
+          <li><span class="check">✓</span> Premium modern UI/UX design</li>
+          <li><span class="check">✓</span> Mobile-first development</li>
+          <li><span class="check">✓</span> WhatsApp integration</li>
+          <li><span class="check">✓</span> Basic SEO setup</li>
+          <li><span class="check">✓</span> Google Maps integration</li>
+          <li><span class="check">✓</span> Contact &amp; inquiry forms</li>
+          <li><span class="check">✓</span> Delivered in 4–10 days</li>
+          <li><span class="check">✓</span> 3 rounds of revisions</li>
+        </ul>
+        <a href="https://wa.me/916363797625?text=Hi%2C%20I'm%20interested%20in%20the%20Business%20Plan%20(%E2%82%B99999)" class="btn-price gold-btn" target="_blank" rel="noopener">Get Started →</a>
+      </div>
+
+    </div>
+
+    <!-- ADD-ONS -->
+    <div class="addons-section reveal">
+      <div class="addons-header">
+        <div>
+          <h3>Optional <span class="gold-text">Add-ons</span></h3>
+          <p>Enhance your website with these additional services. Ask us for current pricing on WhatsApp.</p>
+        </div>
+        <a href="https://wa.me/916363797625?text=Hi%2C%20I%20want%20to%20ask%20about%20add-on%20pricing!" class="btn-gold-sm" target="_blank" rel="noopener">💬 Ask Pricing</a>
+      </div>
+      <div class="addon-cards-grid">
+
+        <div class="addon-card">
+          <div class="addon-card-top">
+            <div class="addon-card-icon">🌐</div>
+            <div class="addon-card-badge">Popular</div>
+          </div>
+          <h4>Custom Domain Setup</h4>
+          <p>yourname.com — professional &amp; premium feel for your brand</p>
+          <div class="addon-card-check"><span>✓</span> Domain registration guidance</div>
+          <div class="addon-card-check"><span>✓</span> Full DNS &amp; hosting setup</div>
+        </div>
+
+        <div class="addon-card">
+          <div class="addon-card-top">
+            <div class="addon-card-icon">🛠️</div>
+          </div>
+          <h4>Monthly Maintenance</h4>
+          <p>Keep your site updated, secure, and running at its best</p>
+          <div class="addon-card-check"><span>✓</span> Content updates &amp; edits</div>
+          <div class="addon-card-check"><span>✓</span> Bug fixes &amp; WhatsApp support</div>
+        </div>
+
+        <div class="addon-card">
+          <div class="addon-card-top">
+            <div class="addon-card-icon">📊</div>
+          </div>
+          <h4>Google Analytics</h4>
+          <p>Know who visits your site, where they come from, and what they do</p>
+          <div class="addon-card-check"><span>✓</span> Full GA4 setup</div>
+          <div class="addon-card-check"><span>✓</span> Dashboard walkthrough</div>
+        </div>
+
+        <div class="addon-card">
+          <div class="addon-card-top">
+            <div class="addon-card-icon">📝</div>
+          </div>
+          <h4>Extra Pages</h4>
+          <p>Need more than your plan includes? Add any page anytime</p>
+          <div class="addon-card-check"><span>✓</span> Any page type</div>
+          <div class="addon-card-check"><span>✓</span> Matching your site design</div>
+        </div>
+
+        <div class="addon-card">
+          <div class="addon-card-top">
+            <div class="addon-card-icon">📸</div>
+          </div>
+          <h4>Photo Gallery Section</h4>
+          <p>Showcase your work, products, or space beautifully</p>
+          <div class="addon-card-check"><span>✓</span> Lightbox image viewer</div>
+          <div class="addon-card-check"><span>✓</span> Mobile-optimised grid</div>
+        </div>
+    </div>
+
+    <!-- FAQ -->
+    <div style="margin-top:4rem">
+      <div class="section-head reveal">
+        <div class="section-eyebrow">FAQ</div>
+        <h2 class="section-title">Common <em>Questions</em></h2>
+      </div>
+      <div class="faq-grid">
+        <div class="faq-item reveal">
+          <h4>Do I need to pay anything upfront?</h4>
+          <p>Yes, we take 50% upfront to start the project and the remaining 50% when your website is ready to launch. This protects both parties.</p>
+        </div>
+        <div class="faq-item reveal">
+          <h4>What happens after my website is built?</h4>
+          <p>We hand over everything to you — the files, access credentials, and a walkthrough. You can also opt for our monthly maintenance plan.</p>
+        </div>
+        <div class="faq-item reveal">
+          <h4>Can I update my website myself later?</h4>
+          <p>Yes! We build simple static sites that you or anyone can update. We also offer a maintenance plan if you prefer us to handle it.</p>
+        </div>
+        <div class="faq-item reveal">
+          <h4>What is GitHub Pages hosting?</h4>
+          <p>GitHub Pages is a free hosting service by GitHub. Your website is hosted for free, and it's fast and reliable. We handle the setup for you.</p>
+        </div>
+        <div class="faq-item reveal">
+          <h4>How do revisions work?</h4>
+          <p>After the first draft, you give us feedback. Starter plan includes 1 revision round, Business plan includes 2. Additional revisions are available.</p>
+        </div>
+        <div class="faq-item reveal">
+          <h4>Will my website show up on Google?</h4>
+          <p>The Business plan includes basic SEO setup that helps Google find your site. Local businesses typically start appearing in results within 1–4 weeks.</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section class="cta-band">
+  <div class="cta-glow"></div>
+  <div class="container cta-inner reveal">
+    <div>
+      <h2 class="cta-title">Have more questions? <em>Let's talk.</em></h2>
+      <p class="cta-sub">Message us on WhatsApp and we'll answer everything. Free consultation, no commitment.</p>
+    </div>
+    <div class="cta-actions">
+      <a href="https://wa.me/916363797625?text=Hi%2C%20I%20have%20some%20questions%20about%20pricing!" class="btn-gold-lg" target="_blank" rel="noopener">💬 Chat on WhatsApp</a>
+      <a href="contact.html" class="btn-outline-lg">Contact Us</a>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" style="display:inline-flex;align-items:center;gap:0.65rem;text-decoration:none;margin-bottom:1rem;">
+          <img src="logo.png" alt="Chirvox" style="height:50px;width:auto"/>
+          <span style="font-family:Cormorant Garamond,serif;font-size:1.15rem;font-weight:600;color:#fff;letter-spacing:-0.01em;white-space:nowrap"> <span style="background:linear-gradient(135deg,#c9a84c 0%,#f0d080 45%,#c9a84c 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">Chirvox</span></span>
+        </a>
+        <p>Premium web development for small businesses. Professional websites that help you grow.</p>
+        <div class="footer-social">
+          <a href="https://wa.me/916363797625" target="_blank" class="social-btn">💬 WhatsApp</a>
+          <a href="mailto:chirvox@gmail.com" class="social-btn">✉️ Email</a>
+        </div>
+      </div>
+      <div class="footer-col"><h4>Pages</h4><ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="portfolio.html">Portfolio</a></li>
+        <li><a href="pricing.html">Pricing</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul></div>
+      <div class="footer-col"><h4>Services</h4><ul>
+        <li><a href="services.html#svc-business-website">Business Website</a></li>
+        <li><a href="services.html#svc-landing-page">Landing Page</a></li>
+        <li><a href="services.html#svc-redesign">Website Redesign</a></li>
+        <li><a href="services.html#svc-seo">SEO Setup</a></li>
+      </ul></div>
+      <div class="footer-col"><h4>Legal</h4><ul>
+        <li><a href="terms.html">Terms &amp; Conditions</a></li>
+        <li><a href="https://wa.me/916363797625" target="_blank">WhatsApp Us</a></li>
+        <li><a href="mailto:chirvox@gmail.com">chirvox@gmail.com</a></li>
+      </ul></div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 Chirvox. All rights reserved.</span>
+      <span>Made with ♥ in India</span>
+      <a href="terms.html" style="color:var(--white-20);font-size:0.8rem;text-decoration:none" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--white-20)'">Terms &amp; Conditions</a>
+    </div>
+  </div>
+</footer>
+
+<script src="main.js"></script>
+</body>
+</html>
