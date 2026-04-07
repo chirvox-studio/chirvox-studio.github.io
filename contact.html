@@ -1,9 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-NBW2ZM2F');</script>
+<!-- End Google Tag Manager -->
+
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, viewport-fit=cover"/>
-  <title>Contact — Chirvox</title>
+  <title>Contact — CV WebCraft</title>
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,500;0,600;0,700;1,300;1,500&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet"/>
@@ -114,16 +122,73 @@
     .popup-via { display:inline-block; margin-top:0.9rem; font-size:0.8rem; color:rgba(255,255,255,0.4); background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.07); padding:0.3rem 0.9rem; border-radius:100px; }
 
     @media(max-width:600px){ .submit-row { grid-template-columns:1fr; } }
+
+    /* ADD-ONS MULTI-SELECT CHECKBOXES */
+    .addons-checkboxes {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.6rem;
+      margin-top: 0.5rem;
+    }
+    .addon-check-item {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      cursor: pointer;
+      padding: 0.65rem 0.9rem;
+      background: rgba(255,255,255,0.03);
+      border: 1.5px solid rgba(255,255,255,0.07);
+      border-radius: 10px;
+      transition: border-color 0.2s, background 0.2s;
+      user-select: none;
+    }
+    .addon-check-item:hover {
+      border-color: rgba(201,168,76,0.3);
+      background: rgba(201,168,76,0.05);
+    }
+    .addon-check-item input[type="checkbox"] { display: none; }
+    .addon-cb-box {
+      width: 18px; height: 18px; flex-shrink: 0;
+      border: 1.5px solid rgba(201,168,76,0.3);
+      border-radius: 5px;
+      background: rgba(255,255,255,0.03);
+      display: grid; place-items: center;
+      transition: background 0.15s, border-color 0.15s;
+      position: relative;
+    }
+    .addon-cb-box::after {
+      content: '✓';
+      font-size: 0.65rem; font-weight: 800; color: #000;
+      opacity: 0; transition: opacity 0.12s;
+    }
+    .addon-check-item input:checked + .addon-cb-box {
+      background: linear-gradient(135deg,#c9a84c,#f0d080,#c9a84c);
+      border-color: #c9a84c;
+    }
+    .addon-check-item input:checked + .addon-cb-box::after { opacity: 1; }
+    .addon-check-item:has(input:checked) {
+      border-color: rgba(201,168,76,0.4);
+      background: rgba(201,168,76,0.08);
+    }
+    .addon-cb-label { font-size: 0.83rem; color: rgba(255,255,255,0.7); font-weight: 500; }
+    @media(max-width:500px){ .addons-checkboxes { grid-template-columns: 1fr; } }
+
+
   </style>
 </head>
+
 <body>
+  <!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NBW2ZM2F"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
 
 <!-- SUCCESS POPUP -->
 <div class="popup-overlay" id="successPopup">
   <div class="popup-box">
     <div class="popup-icon">✅</div>
     <h3>Message Sent!</h3>
-    <p>Thank you for reaching out to Chirvox. We've received your details and will get back to you as soon as possible — usually within 2 hours on business days.</p>
+    <p>Thank you for reaching out to CV WebCraft. We've received your details and will get back to you as soon as possible — usually within 2 hours on business days.</p>
     <button class="popup-close" onclick="closePopup()">Got it, Thanks!</button>
     <div class="popup-via" id="popupVia">Sent via WhatsApp</div>
   </div>
@@ -133,8 +198,8 @@
 <nav class="navbar" id="navbar">
   <div class="nav-inner">
     <a href="index.html" class="nav-logo">
-      <img src="logo.png" alt="Chirvox Logo" class="logo-img"/>
-      <span class="nav-brand-name"> <span>Chirvox</span></span>
+      <img src="logo.png" alt="CV WebCraft Logo" class="logo-img"/>
+      <span class="nav-brand-name">CV <span>WebCraft</span></span>
     </a>
     <ul class="nav-links" id="navLinks">
       <li><a href="index.html">Home</a></li>
@@ -170,9 +235,9 @@
             <div class="c-method-icon">💬</div>
             <div class="c-method-text"><strong>WhatsApp (Fastest)</strong><span>Reply within 2 hours</span></div>
           </a>
-          <a href="/cdn-cgi/l/email-protection#adc5c8c1c1c2edcedbdac8cfcedfcccbd983cec2c0" class="c-method">
+          <a href="mailto:chirvox@gmail.com" class="c-method">
             <div class="c-method-icon">✉️</div>
-            <div class="c-method-text"><strong><span class="__cf_email__" data-cfemail="147c7178787b54776263717677667572603a777b79">[email&#160;protected]</span></strong><span>For detailed discussions</span></div>
+            <div class="c-method-text"><strong>chirvox@gmail.com</strong><span>For detailed discussions</span></div>
           </a>
         </div>
         <div style="margin-top:2rem;padding-top:2rem;border-top:1px solid rgba(255,255,255,0.06)">
@@ -249,21 +314,38 @@
             <span class="field-error" id="err-plan">Please select a plan or "Not sure yet".</span>
           </div>
 
-          <!-- Add-ons -->
-          <div class="form-group" id="fg-add">
-            <label for="fadd">Add-ons <span style="color:#c9a84c"></span></label>
-            <select id="fadd">
-              <option value="">— Select a plan —</option>
-              <option value="Custom Domain Setup">Custom Domain Setup</option>
-              <option value="Monthly Maintenance">Monthly Maintenance</option>
-              <option value="Google Analytics">Google Analytics</option>
-              <option value="Extra Pages">Extra Pages</option>
-              <option value="Photo Gallery Section">Photo Gallery Section</option>
-            </select>
+
+          <!-- Add-ons (Optional - multi-select) -->
+          <div class="form-group" id="fg-addons">
+            <label>Add-ons <span style="color:rgba(255,255,255,0.3);font-size:0.78rem;font-weight:400"> (optional — select multiple, charged extra accordingly)</span></label>
+            <div class="addons-checkboxes">
+              <label class="addon-check-item">
+                <input type="checkbox" class="addon-cb" value="Custom Domain Setup"/>
+                <span class="addon-cb-box"></span>
+                <span class="addon-cb-label">🌐 Custom Domain Setup</span>
+              </label>
+              <label class="addon-check-item">
+                <input type="checkbox" class="addon-cb" value="Monthly Maintenance"/>
+                <span class="addon-cb-box"></span>
+                <span class="addon-cb-label">🛠️ Monthly Maintenance</span>
+              </label>
+              <label class="addon-check-item">
+                <input type="checkbox" class="addon-cb" value="Google Analytics Setup"/>
+                <span class="addon-cb-box"></span>
+                <span class="addon-cb-label">📊 Google Analytics Setup</span>
+              </label>
+              <label class="addon-check-item">
+                <input type="checkbox" class="addon-cb" value="Extra Pages"/>
+                <span class="addon-cb-box"></span>
+                <span class="addon-cb-label">📝 Extra Pages</span>
+              </label>
+              <label class="addon-check-item">
+                <input type="checkbox" class="addon-cb" value="Photo Gallery Section"/>
+                <span class="addon-cb-box"></span>
+                <span class="addon-cb-label">📸 Photo Gallery Section</span>
+              </label>
+            </div>
           </div>
-
-        
-
 
           <!-- Message -->
           <div class="form-group" id="fg-message">
@@ -309,13 +391,13 @@
     <div class="footer-grid">
       <div class="footer-brand">
         <a href="index.html" style="display:inline-flex;align-items:center;gap:0.65rem;text-decoration:none;margin-bottom:1rem;">
-          <img src="logo.png" alt="Chirvox" style="height:50px;width:auto"/>
-          <span style="font-family:Cormorant Garamond,serif;font-size:1.15rem;font-weight:600;color:#fff;letter-spacing:-0.01em;white-space:nowrap"> <span style="background:linear-gradient(135deg,#c9a84c 0%,#f0d080 45%,#c9a84c 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">Chirvox</span></span>
+          <img src="logo.png" alt="CV WebCraft" style="height:50px;width:auto"/>
+          <span style="font-family:Cormorant Garamond,serif;font-size:1.15rem;font-weight:600;color:#fff;letter-spacing:-0.01em;white-space:nowrap">CV <span style="background:linear-gradient(135deg,#c9a84c 0%,#f0d080 45%,#c9a84c 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">WebCraft</span></span>
         </a>
         <p>Premium web development for small businesses. Professional websites that help you grow.</p>
         <div class="footer-social">
           <a href="https://wa.me/916363797625" target="_blank" class="social-btn">💬 WhatsApp</a>
-          <a href="/cdn-cgi/l/email-protection#b1d9d4dddddef1d2c7c6d4d3d2c3d0d7c59fd2dedc" class="social-btn">✉️ Email</a>
+          <a href="mailto:chirvox@gmail.com" class="social-btn">✉️ Email</a>
         </div>
       </div>
       <div class="footer-col"><h4>Pages</h4><ul>
@@ -334,18 +416,18 @@
       <div class="footer-col"><h4>Legal</h4><ul>
         <li><a href="terms.html">Terms &amp; Conditions</a></li>
         <li><a href="https://wa.me/916363797625" target="_blank">WhatsApp Us</a></li>
-        <li><a href="/cdn-cgi/l/email-protection#147c7178787b54776263717677667572603a777b79"><span class="__cf_email__" data-cfemail="6d05080101022d0e1b1a080f0e1f0c0b19430e0200">[email&#160;protected]</span></a></li>
+        <li><a href="mailto:chirvox@gmail.com">chirvox@gmail.com</a></li>
       </ul></div>
     </div>
     <div class="footer-bottom">
-      <span>© 2025 Chirvox. All rights reserved.</span>
+      <span>© 2025 CV WebCraft. All rights reserved.</span>
       <span>Made with ♥ in India</span>
       <a href="terms.html" style="color:rgba(255,255,255,0.2);font-size:0.8rem;text-decoration:none" onmouseover="this.style.color='#c9a84c'" onmouseout="this.style.color='rgba(255,255,255,0.2)'">Terms &amp; Conditions</a>
     </div>
   </div>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="main.js"></script>
+<script src="main.js"></script>
 <script>
 // ── "Other" business toggle ──
 function handleBusinessChange(val) {
@@ -450,7 +532,6 @@ async function submitForm(via) {
   clearState('fg-email','err-email');
   clearState('fg-business','err-business');
   clearState('fg-plan','err-plan');
-  clearState('fg-add');
   clearState('fg-message','err-message');
   document.getElementById('otherBusinessGroup').classList.remove('has-error');
   document.getElementById('err-other').style.display = 'none';
@@ -464,7 +545,6 @@ async function submitForm(via) {
   var business = document.getElementById('fbusiness').value;
   var other    = document.getElementById('fotherBusiness').value.trim();
   var plan     = document.getElementById('fplan').value;
-  var plan     = document.getElementById('fadd').value;
   var message  = document.getElementById('fmessage').value.trim();
   var tncOk    = document.getElementById('tncCheck').checked;
 
@@ -523,12 +603,20 @@ async function submitForm(via) {
   }
 
   var bizFinal = (business === 'Other') ? ('Other: ' + other) : business;
-  var msgBody  = 'Hi Chirvox! I\'d like to discuss a website project.\n\n'
+
+  // Collect selected add-ons
+  var addonBoxes = document.querySelectorAll('.addon-cb:checked');
+  var selectedAddons = [];
+  addonBoxes.forEach(function(cb){ selectedAddons.push(cb.value); });
+  var addonsLine = selectedAddons.length > 0 ? ('Add-ons: ' + selectedAddons.join(', ') + '\n') : '';
+
+  var msgBody  = 'Hi CV WebCraft! I\'d like to discuss a website project.\n\n'
                + 'Name: '         + name     + '\n'
                + 'Phone: '        + phone    + '\n'
                + 'Email: '        + email    + '\n'
                + 'Business: '     + bizFinal + '\n'
                + 'Interested in: '+ plan     + '\n'
+               + addonsLine
                + 'Details: '      + message;
 
   if (via === 'whatsapp') {
@@ -550,14 +638,15 @@ async function submitForm(via) {
   document.getElementById('fbusiness').value= '';
   document.getElementById('fotherBusiness').value = '';
   document.getElementById('fplan').value    = '';
-  document.getElementById('fadd').value    = '';
   document.getElementById('fmessage').value = '';
+  document.querySelectorAll('.addon-cb').forEach(function(cb){ cb.checked = false; });
+  document.querySelectorAll('.addon-check-item').forEach(function(el){ el.style.borderColor=''; el.style.background=''; });
   document.getElementById('tncCheck').checked = false;
   document.getElementById('otherBusinessGroup').classList.remove('show','has-error');
   document.getElementById('otherBusinessGroup').style.display = 'none';
   document.getElementById('tnc-group').classList.remove('has-error');
   document.getElementById('err-tnc').style.display = 'none';
-  ['fg-name','fg-phone','fg-email','fg-business','fg-plan','fg-add','fg-message'].forEach(function(id) {
+   ['fg-name','fg-phone','fg-email','fg-business','fg-otherBusinessGroup','fg-plan','fg-add','fg-message'].forEach(function(id) {
     var el = document.getElementById(id);
     if (el) el.classList.remove('has-error','has-success');
   });
