@@ -1,16 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-NBW2ZM2F');</script>
-<!-- End Google Tag Manager -->
-
   <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, viewport-fit=cover"/>
   <title>Pricing — Chirvox</title>
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
@@ -21,6 +13,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     .nav-logo { display:flex; align-items:center; gap:0.65rem; flex-shrink:0; text-decoration:none; }
     .nav-brand-name { font-family:'Cormorant Garamond',serif; font-size:1.25rem; font-weight:600; letter-spacing:-0.01em; color:var(--white); white-space:nowrap; }
     .nav-brand-name span { background:var(--gold-gradient); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+
+    /* 3-COL PRICING GRID */
+    .pricing-grid-3 { grid-template-columns: repeat(3, 1fr); }
+    @media(max-width: 900px) { .pricing-grid-3 { grid-template-columns: 1fr; } }
+    @media(min-width: 600px) and (max-width: 900px) { .pricing-grid-3 { grid-template-columns: repeat(2, 1fr); } }
 
     /* STRIKETHROUGH ORIGINAL PRICE */
     .price-original {
@@ -71,12 +68,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     .faq-item p { font-size:0.88rem; color:var(--white-50); line-height:1.65; }
   </style>
 </head>
-
 <body>
-  <!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NBW2ZM2F"
-height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<!-- End Google Tag Manager (noscript) -->
 
 <nav class="navbar" id="navbar">
   <div class="nav-inner">
@@ -109,22 +101,45 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="container">
 
     <!-- PRICING CARDS -->
-    <div class="pricing-grid">
+    <div class="pricing-grid pricing-grid-3">
+
+      <div class="price-card reveal">
+        <div class="price-plan">Starter Lite</div>
+        <div class="price-note">Simple website to get leads</div>
+        <span class="price-save-badge">⚡ Best Value</span>
+        <span class="price-save-badge">⚡Limited launch offer </span>
+        <span class="price-original">₹2,999</span>
+        <div class="price-amount"><sub>₹</sub>1,499</div>
+        <div class="price-note">One-time payment · No monthly fees</div>
+        <div class="price-divider"></div>
+        <ul class="price-features">
+          <li><span class="check">✓</span> 1 page (Landing / Home)</li>
+          <li><span class="check">✓</span> Mobile-friendly design</li>
+          <li><span class="check">✓</span> WhatsApp button</li>
+          <li><span class="check">✓</span> Free hosting (GitHub Pages)</li>
+          <li><span class="check">✓</span> Basic contact form</li>
+          <li><span class="check">✓</span> Delivered in 1–2 days</li>
+          <li><span class="check">✓</span> 1 round of revisions</li>
+        </ul>
+        <a href="https://wa.me/916363797625?text=Hi%2C%20I'm%20interested%20in%20the%20Single%20Page%20Plan%20(%E2%82%B91499)" class="btn-price outline-btn" target="_blank" rel="noopener">Get Started →</a>
+      </div>
 
       <div class="price-card reveal">
         <div class="price-plan">Starter Plan</div>
+        <div class="price-note">Perfect for small businesses starting online</div>
         <span class="price-save-badge">🔥 Save ₹2,000</span>
+        <span class="price-save-badge">🔥Limited launch offer </span>
         <span class="price-original">₹6,999</span>
         <div class="price-amount"><sub>₹</sub>4,999</div>
         <div class="price-note">One-time payment · No monthly fees</div>
         <div class="price-divider"></div>
         <ul class="price-features">
-          <li><span class="check">✓</span> 3–5 custom pages</li>
+          <li><span class="check">✓</span> 2–5 custom pages</li>
           <li><span class="check">✓</span> Mobile-friendly design</li>
           <li><span class="check">✓</span> Free hosting (GitHub Pages)</li>
           <li><span class="check">✓</span> Basic contact form</li>
           <li><span class="check">✓</span> WhatsApp button</li>
-          <li><span class="check">✓</span> Delivered in 2–7 days</li>
+          <li><span class="check">✓</span> Delivered in 3–7 days</li>
           <li><span class="check">✓</span> 2 round of revisions</li>
         </ul>
         <a href="https://wa.me/916363797625?text=Hi%2C%20I'm%20interested%20in%20the%20Starter%20Plan%20(%E2%82%B94999)" class="btn-price outline-btn" target="_blank" rel="noopener">Get Started →</a>
@@ -133,13 +148,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div class="price-card featured reveal">
         <div class="price-badge">⭐ Most Popular</div>
         <div class="price-plan">Business Plan</div>
-        <span class="price-save-badge">🔥 Save ₹3,000</span>
+        <div class="price-note">Best for serious businesses that want growth</div>
+        <span class="price-save-badge">🔥 Save ₹3,000 </span>
+        <span class="price-save-badge">🔥Limited launch offer </span>
         <span class="price-original">₹12,999</span>
         <div class="price-amount"><sub>₹</sub>9,999</div>
         <div class="price-note">One-time payment · No monthly fees</div>
         <div class="price-divider"></div>
         <ul class="price-features">
-          <li><span class="check">✓</span> Up to 10 custom pages</li>
+          <li><span class="check">✓</span> Up to 7 custom pages</li>
           <li><span class="check">✓</span> Premium modern UI/UX design</li>
           <li><span class="check">✓</span> Mobile-first development</li>
           <li><span class="check">✓</span> WhatsApp integration</li>
@@ -214,7 +231,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <p>Showcase your work, products, or space beautifully</p>
           <div class="addon-card-check"><span>✓</span> Lightbox image viewer</div>
           <div class="addon-card-check"><span>✓</span> Mobile-optimised grid</div>
-        </div>
+        </div>     
+      </div>
     </div>
 
     <!-- FAQ -->
@@ -238,15 +256,27 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </div>
         <div class="faq-item reveal">
           <h4>What is GitHub Pages hosting?</h4>
-          <p>GitHub Pages is a free hosting service by GitHub. Your website is hosted for free, and it's fast and reliable. We handle the setup for you.</p>
+          <p>GitHub Pages is a free hosting service by GitHub. We set up your website and can provide access if needed. A custom domain can also be connected separately.</p>
         </div>
         <div class="faq-item reveal">
           <h4>How do revisions work?</h4>
-          <p>After the first draft, you give us feedback. Starter plan includes 1 revision round, Business plan includes 2. Additional revisions are available.</p>
+          <p>A revision includes small design or content changes. Major changes or new features may require additional cost. After the first draft, you give us feedback. Starter plan includes 1 revision round, Business plan includes 2.  Additional revisions are available.</p>
         </div>
         <div class="faq-item reveal">
           <h4>Will my website show up on Google?</h4>
-          <p>The Business plan includes basic SEO setup that helps Google find your site. Local businesses typically start appearing in results within 1–4 weeks.</p>
+          <p>We implement basic SEO setup to help search engines discover your website. However, ranking on Google depends on multiple factors and cannot be guaranteed.</p>
+        </div>
+         <div class="faq-item reveal">
+          <h4>Who owns the website?</h4>
+          <p>Once full payment is completed, the website and its files are handed over to you. You will have full ownership. For full ownership, We recommend using your own GitHub account.</p>
+        </div>
+        <div class="faq-item reveal">
+          <h4>Can I see examples of your work?</h4>
+          <p> Yes, we can share demo websites and recent projects based on your business type. Each website is custom-built to match your brand and goals.</p>
+        </div>
+        <div class="faq-item reveal">
+          <h4>What payment methods do you accept?</h4>
+          <p>Currently we only accept UPI.</p>
         </div>
       </div>
     </div>
@@ -291,7 +321,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </ul></div>
       <div class="footer-col"><h4>Services</h4><ul>
         <li><a href="services.html#svc-business-website">Business Website</a></li>
-        <li><a href="services.html#svc-landing-page">Landing Page</a></li>
+        <li><a href="services.html#svc-landing-page">Lead Generation Page</a></li>
         <li><a href="services.html#svc-redesign">Website Redesign</a></li>
         <li><a href="services.html#svc-seo">SEO Setup</a></li>
       </ul></div>

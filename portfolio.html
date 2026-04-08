@@ -1,40 +1,120 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-NBW2ZM2F');</script>
-<!-- End Google Tag Manager -->
-
   <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, viewport-fit=cover"/>
   <title>Portfolio — Chirvox</title>
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,500;0,600;0,700;1,300;1,500&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="style.css"/>
-<style>
+  <style>
     .nav-logo { display:flex; align-items:center; gap:0.65rem; flex-shrink:0; text-decoration:none; }
-    .nav-brand-name {
-      font-family:'Cormorant Garamond',serif;
-      font-size:1.25rem; font-weight:600; letter-spacing:-0.01em;
-      color:var(--white); white-space:nowrap;
+    .nav-brand-name { font-family:'Cormorant Garamond',serif; font-size:1.25rem; font-weight:600; letter-spacing:-0.01em; color:var(--white); white-space:nowrap; }
+    .nav-brand-name span { background:var(--gold-gradient); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+
+    /* DEMO NOTICE BANNER */
+    .demo-notice {
+      background: rgba(201,168,76,0.08);
+      border: 1px solid rgba(201,168,76,0.25);
+      border-radius: 12px;
+      padding: 0.9rem 1.4rem;
+      margin-bottom: 2.5rem;
+      display: flex; align-items: center; gap: 0.8rem;
+      font-size: 0.88rem; color: rgba(255,255,255,0.6);
     }
-    .nav-brand-name span {
-      background:var(--gold-gradient);
-      -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;
+    .demo-notice strong { color: #c9a84c; }
+
+    /* PORTFOLIO CARD - CLICKABLE */
+    .port-card {
+      background: var(--black-3);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+      transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+      cursor: pointer;
+      display: block;
+      text-decoration: none;
+      color: inherit;
+      position: relative;
     }
+    .port-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 30px 60px rgba(0,0,0,0.5), 0 0 30px rgba(201,168,76,0.08);
+      border-color: rgba(201,168,76,0.3);
+    }
+
+    /* Screenshot image area */
+    .port-screenshot {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      object-position: top;
+      display: block;
+      border-bottom: 1px solid var(--border-light);
+      transition: transform 0.4s ease;
+    }
+    .port-card:hover .port-screenshot { transform: scale(1.03); }
+
+    /* Screenshot wrapper with overflow hidden for scale effect */
+    .port-img-wrap {
+      overflow: hidden;
+      height: 220px;
+      position: relative;
+    }
+
+    /* "Demo" badge on every card */
+    .demo-badge {
+      position: absolute;
+      top: 12px; right: 12px;
+      background: rgba(0,0,0,0.75);
+      border: 1px solid rgba(201,168,76,0.35);
+      color: #c9a84c;
+      font-size: 0.68rem; font-weight: 700;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      padding: 0.25rem 0.65rem;
+      border-radius: 100px;
+      backdrop-filter: blur(6px);
+      z-index: 2;
+    }
+
+    /* Hover overlay: "View Website →" */
+    .port-hover-overlay {
+      position: absolute; inset: 0;
+      background: rgba(0,0,0,0.55);
+      display: flex; align-items: center; justify-content: center;
+      opacity: 0;
+      transition: opacity 0.25s;
+      z-index: 3;
+    }
+    .port-card:hover .port-hover-overlay { opacity: 1; }
+    .port-hover-btn {
+      background: var(--gold-gradient);
+      color: #000;
+      font-weight: 700; font-size: 0.9rem;
+      padding: 0.7rem 1.6rem;
+      border-radius: 100px;
+      display: flex; align-items: center; gap: 0.5rem;
+      transform: translateY(8px);
+      transition: transform 0.25s;
+    }
+    .port-card:hover .port-hover-btn { transform: translateY(0); }
+
+    .port-body { padding: 1.5rem; }
+    .port-tag {
+      display: inline-block;
+      font-size: 0.7rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+      background: var(--gold-glow); color: var(--gold);
+      border: 1px solid var(--border);
+      padding: 0.2rem 0.7rem; border-radius: 100px; margin-bottom: 0.6rem;
+    }
+    .port-body h3 { font-family:'Cormorant Garamond',serif; font-size:1.35rem; font-weight:600; color:var(--white); margin-bottom:0.45rem; letter-spacing:-0.01em; }
+    .port-body p { font-size:0.88rem; color:var(--white-50); line-height:1.6; margin-bottom:1rem; }
+    .port-tags { display:flex; flex-wrap:wrap; gap:0.4rem; }
+    .port-tags span { font-size:0.73rem; color:var(--white-50); background:var(--white-04); border:1px solid var(--border-light); padding:0.2rem 0.6rem; border-radius:6px; }
   </style>
 </head>
-
 <body>
-  <!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NBW2ZM2F"
-height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<!-- End Google Tag Manager (noscript) -->
 
 <nav class="navbar" id="navbar">
   <div class="nav-inner">
@@ -58,14 +138,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </nav>
 
 <div class="page-hero">
-  <div class="page-hero-eyebrow">What We Offer</div>
-  <h1>Professional <em>Web Services</em><br>For Every Business</h1>
-  <p>From a simple landing page to a full business website — we build exactly what your business needs to grow online.</p>
-  <a href="https://wa.me/916363797625?text=Hi%2C%20I'd%20like%20to%20discuss%20a%20project!" class="btn-gold-lg" target="_blank" rel="noopener">💬 Discuss Your Project</a>
-</div>
-
-
-<div class="page-hero">
   <div class="page-hero-eyebrow">Our Work</div>
   <h1>Websites Built for <em>Real Businesses</em></h1>
   <p>Each project is custom-designed from scratch. No templates, no shortcuts — just professional websites built to grow your business.</p>
@@ -73,115 +145,116 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <section class="section-dark">
   <div class="container">
+
+    <!-- DEMO NOTICE -->
+    <div class="demo-notice reveal">
+      <span style="font-size:1.1rem">ℹ️</span>
+      <span><strong>These are example / demo websites</strong> — created to showcase design style and capability. Click any card to visit the demo. The WhatsApp buttons inside demos use a placeholder number and won't connect to a real business.</span>
+    </div>
+
     <div class="portfolio-full-grid">
 
-      <div class="port-card reveal">
-        <div class="port-visual pv-restaurant">
-          <div class="port-visual-inner">
-            <div class="pv-mockbar"><div class="pv-dots"><span></span><span></span><span></span></div><div class="pv-urlbar"></div></div>
-            <div class="pv-hero-block">🍛</div>
-            <div class="pv-row"><div class="pv-block"></div><div class="pv-block"></div><div class="pv-block"></div></div>
-          </div>
+      <!-- 1: Spice Garden Restaurant -->
+      <a class="port-card reveal" href="https://chirvox-studio.github.io/Garden-Restaurant/" target="_blank" rel="noopener" onclick="handlePortfolioClick(event, 'https://chirvox-studio.github.io/Garden-Restaurant/')">
+        <div class="port-img-wrap">
+          <span class="demo-badge">Demo</span>
+          <div class="port-hover-overlay"><div class="port-hover-btn">🔗 View Website →</div></div>
+          <!-- Replace src with your screenshot: portfolio-images/spice-garden.png -->
+          <img class="port-screenshot" src="portfolio-images/Garden-Restaurant.png" alt="Spice Garden Restaurant screenshot" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
+          <div style="display:none;height:220px;align-items:center;justify-content:center;font-size:3rem;background:linear-gradient(160deg,#1a0800,#5a2000)">🍛</div>
         </div>
         <div class="port-body">
           <span class="port-tag">Restaurant</span>
-          <h3>Spice Garden Restaurant</h3>
-          <p>Full restaurant website with digital menu, location map, gallery, and WhatsApp reservation button. The owner saw a 40% increase in table bookings after launch.</p>
-          <div class="port-tags">
-            <span>5 Pages</span><span>WhatsApp Integration</span><span>Menu Section</span><span>Mobile-First</span>
-          </div>
+          <h3>Garden Restaurant</h3>
+          <p>Full restaurant website with digital menu, location map, gallery, and WhatsApp reservation button.</p>
+          <div class="port-tags"><span>5 Pages</span><span>WhatsApp Integration</span><span>Menu Section</span><span>Mobile-First</span></div>
         </div>
-      </div>
+      </a>
 
-      <div class="port-card reveal">
-        <div class="port-visual pv-gym">
-          <div class="port-visual-inner">
-            <div class="pv-mockbar"><div class="pv-dots"><span></span><span></span><span></span></div><div class="pv-urlbar"></div></div>
-            <div class="pv-hero-block">🏋️</div>
-            <div class="pv-row"><div class="pv-block"></div><div class="pv-block"></div><div class="pv-block"></div></div>
-          </div>
+      <!-- 2: IronEdge Fitness -->
+      <a class="port-card reveal" href="https://chirvox-studio.github.io/GYM/" target="_blank" rel="noopener" onclick="handlePortfolioClick(event, 'https://chirvox-studio.github.io/GYM/')">
+        <div class="port-img-wrap">
+          <span class="demo-badge">Demo</span>
+          <div class="port-hover-overlay"><div class="port-hover-btn">🔗 View Website →</div></div>
+          <!-- Replace src with your screenshot: portfolio-images/ironedge-fitness.png -->
+          <img class="port-screenshot" src="portfolio-images/GYM.png" alt="IronEdge Fitness screenshot" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
+          <div style="display:none;height:220px;align-items:center;justify-content:center;font-size:3rem;background:linear-gradient(160deg,#040404,#0a1f18)">🏋️</div>
         </div>
         <div class="port-body">
-          <span class="port-tag">Fitness & Gym</span>
-          <h3>IronEdge Fitness</h3>
-          <p>Bold, high-energy gym website with membership plans, trainer profiles, batch timings, and a free trial class booking form. New member inquiries tripled within a month.</p>
-          <div class="port-tags">
-            <span>5 Pages</span><span>Booking Form</span><span>Membership Plans</span><span>SEO Setup</span>
-          </div>
+          <span class="port-tag">Fitness &amp; Gym</span>
+          <h3>GYM Fitness</h3>
+          <p>Bold, high-energy gym website with membership plans, trainer profiles, batch timings, and a trial class booking form.</p>
+          <div class="port-tags"><span>5 Pages</span><span>Booking Form</span><span>Membership Plans</span><span>SEO Setup</span></div>
         </div>
-      </div>
+      </a>
 
-      <div class="port-card reveal">
-        <div class="port-visual pv-shop">
-          <div class="port-visual-inner">
-            <div class="pv-mockbar"><div class="pv-dots"><span></span><span></span><span></span></div><div class="pv-urlbar"></div></div>
-            <div class="pv-hero-block">🧵</div>
-            <div class="pv-row"><div class="pv-block"></div><div class="pv-block"></div><div class="pv-block"></div></div>
-          </div>
+      <!-- 3: Navrang Textiles -->
+      <a class="port-card reveal" href="https://chirvox-studio.github.io/Textiles/" target="_blank" rel="noopener" onclick="handlePortfolioClick(event, 'https://chirvox-studio.github.io/Textiles/')">
+        <div class="port-img-wrap">
+          <span class="demo-badge">Demo</span>
+          <div class="port-hover-overlay"><div class="port-hover-btn">🔗 View Website →</div></div>
+          <!-- Replace src with your screenshot: portfolio-images/navrang-textiles.png -->
+          <img class="port-screenshot" src="portfolio-images/Textiles.png" alt="Navrang Textiles screenshot" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
+          <div style="display:none;height:220px;align-items:center;justify-content:center;font-size:3rem;background:linear-gradient(160deg,#050510,#121240)">🧵</div>
         </div>
         <div class="port-body">
           <span class="port-tag">Retail Shop</span>
-          <h3>Navrang Textiles</h3>
-          <p>Clean catalogue-style website for a fabric shop with product categories, WhatsApp inquiry button, and store hours. Customers now call ahead before visiting.</p>
-          <div class="port-tags">
-            <span>4 Pages</span><span>Product Catalogue</span><span>WhatsApp Button</span><span>Fast Loading</span>
-          </div>
+          <h3>Textiles</h3>
+          <p>Clean catalogue-style website for a fabric shop with product categories, WhatsApp inquiry button, and store hours.</p>
+          <div class="port-tags"><span>Single Page</span><span>Product Catalogue</span><span>WhatsApp Button</span><span>Fast Loading</span></div>
         </div>
-      </div>
+      </a>
 
-      <div class="port-card reveal">
-        <div class="port-visual pv-salon">
-          <div class="port-visual-inner">
-            <div class="pv-mockbar"><div class="pv-dots"><span></span><span></span><span></span></div><div class="pv-urlbar"></div></div>
-            <div class="pv-hero-block">💅</div>
-            <div class="pv-row"><div class="pv-block"></div><div class="pv-block"></div><div class="pv-block"></div></div>
-          </div>
+      <!-- 4: Glamour Studio -->
+      <a class="port-card reveal" href="https://chirvox-studio.github.io/Beauty-Studio/" target="_blank" rel="noopener" onclick="handlePortfolioClick(event, 'https://chirvox-studio.github.io/Beauty-Studio/')">
+        <div class="port-img-wrap">
+          <span class="demo-badge">Demo</span>
+          <div class="port-hover-overlay"><div class="port-hover-btn">🔗 View Website →</div></div>
+          <!-- Replace src with your screenshot: portfolio-images/glamour-studio.png -->
+          <img class="port-screenshot" src="portfolio-images/Beauty.png"  alt="Glamour Studio screenshot" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
+          <div style="display:none;height:220px;align-items:center;justify-content:center;font-size:3rem;background:linear-gradient(160deg,#1a0a1a,#4a1040)">💅</div>
         </div>
         <div class="port-body">
-          <span class="port-tag">Beauty & Salon</span>
-          <h3>Glamour Studio</h3>
-          <p>Elegant, feminine website for a beauty salon with services menu, pricing, photo gallery, and appointment booking via WhatsApp. Bookings increased significantly after launch.</p>
-          <div class="port-tags">
-            <span>4 Pages</span><span>Service Menu</span><span>Gallery</span><span>Appointment Booking</span>
-          </div>
+          <span class="port-tag">Beauty &amp; Salon</span>
+          <h3>Beauty Studio</h3>
+          <p>Elegant salon website with services menu, pricing, photo gallery, and WhatsApp appointment booking.</p>
+          <div class="port-tags"><span>Single Page</span><span>Service Menu</span><span>Gallery</span><span>Appointment Booking</span></div>
         </div>
-      </div>
+      </a>
 
-      <div class="port-card reveal">
-        <div class="port-visual pv-cafe">
-          <div class="port-visual-inner">
-            <div class="pv-mockbar"><div class="pv-dots"><span></span><span></span><span></span></div><div class="pv-urlbar"></div></div>
-            <div class="pv-hero-block">☕</div>
-            <div class="pv-row"><div class="pv-block"></div><div class="pv-block"></div><div class="pv-block"></div></div>
-          </div>
+      <!-- 5: Brew & Co. Café -->
+      <a class="port-card reveal" href="https://chirvox-studio.github.io/Cafe/" target="_blank" rel="noopener" onclick="handlePortfolioClick(event, 'https://chirvox-studio.github.io/Cafe/')">
+        <div class="port-img-wrap">
+          <span class="demo-badge">Demo</span>
+          <div class="port-hover-overlay"><div class="port-hover-btn">🔗 View Website →</div></div>
+          <!-- Replace src with your screenshot: portfolio-images/brew-co-cafe.png -->
+          <img class="port-screenshot" src="portfolio-images/Cafe.png" alt="Brew and Co Cafe screenshot" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
+          <div style="display:none;height:220px;align-items:center;justify-content:center;font-size:3rem;background:linear-gradient(160deg,#0a0600,#2a1800)">☕</div>
         </div>
         <div class="port-body">
           <span class="port-tag">Café</span>
-          <h3>Brew & Co. Café</h3>
-          <p>Warm, inviting café website with digital menu, atmosphere gallery, and event announcements. Built to bring in both first-time visitors and loyal regulars.</p>
-          <div class="port-tags">
-            <span>3 Pages</span><span>Digital Menu</span><span>Photo Gallery</span><span>Events Section</span>
-          </div>
+          <h3>Café</h3>
+          <p>Warm, inviting café website with digital menu, atmosphere gallery, and event announcements.</p>
+          <div class="port-tags"><span>Single Page</span><span>Digital Menu</span><span>Photo Gallery</span><span>Events Section</span></div>
         </div>
-      </div>
+      </a>
 
-      <div class="port-card reveal">
-        <div class="port-visual pv-medical">
-          <div class="port-visual-inner">
-            <div class="pv-mockbar"><div class="pv-dots"><span></span><span></span><span></span></div><div class="pv-urlbar"></div></div>
-            <div class="pv-hero-block">🏥</div>
-            <div class="pv-row"><div class="pv-block"></div><div class="pv-block"></div><div class="pv-block"></div></div>
-          </div>
+      <!-- 6: HealthFirst Clinic -->
+      <a class="port-card reveal" href="https://chirvox-studio.github.io/Dental-Studio/" target="_blank" rel="noopener" onclick="handlePortfolioClick(event, 'https://chirvox-studio.github.io/Dental-Studio/')">
+        <div class="port-img-wrap">
+          <span class="demo-badge">Demo</span>
+          <div class="port-hover-overlay"><div class="port-hover-btn">🔗 View Website →</div></div>
+          <!-- Replace src with your screenshot: portfolio-images/healthfirst-clinic.png -->
+          <img class="port-screenshot" src="portfolio-images/healthfirst-clinic.svg" alt="HealthFirst Clinic screenshot" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
+          <div style="display:none;height:220px;align-items:center;justify-content:center;font-size:3rem;background:linear-gradient(160deg,#001a1a,#003a3a)">🏥</div>
         </div>
         <div class="port-body">
-          <span class="port-tag">Healthcare</span>
-          <h3>HealthFirst Clinic</h3>
-          <p>Professional medical clinic website with doctor profiles, consultation services, appointment booking, and patient trust-building content. Clean and reassuring design.</p>
-          <div class="port-tags">
-            <span>5 Pages</span><span>Doctor Profiles</span><span>Appointment Form</span><span>Local SEO</span>
-          </div>
+          <span class="port-tag">Dental Clinic</span>
+          <h3>Dental Clinic</h3>
+          <p>Professional medical clinic website with doctor profiles, consultation services, and appointment booking.</p>
+          <div class="port-tags"><span>7 Pages</span><span>Doctor Profiles</span><span>Appointment Form</span><span>Map Integration</span></div>
         </div>
-      </div>
+      </a>
 
     </div>
   </div>
@@ -192,7 +265,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="container cta-inner reveal">
     <div>
       <h2 class="cta-title">Your business could be <em>next</em></h2>
-      <p class="cta-sub">Let's build something professional for your business. Starting at just ₹4,999.</p>
+      <p class="cta-sub">Let's build something professional for your business. Starting at just ₹1,499.</p>
     </div>
     <div class="cta-actions">
       <a href="https://wa.me/916363797625?text=Hi%2C%20I%20saw%20your%20portfolio%20and%20I'm%20interested%20in%20a%20website!" class="btn-gold-lg" target="_blank" rel="noopener">💬 Get Started</a>
@@ -200,8 +273,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
   </div>
 </section>
-
-<script src="main.js"></script>
 
 <footer class="footer">
   <div class="container">
@@ -217,36 +288,56 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <a href="mailto:chirvox@gmail.com" class="social-btn">✉️ Email</a>
         </div>
       </div>
-      <div class="footer-col">
-        <h4>Pages</h4>
-        <ul>
-          <li><a href="index.html">Home</a></li>
-          <li><a href="services.html">Services</a></li>
-          <li><a href="portfolio.html">Portfolio</a></li>
-          <li><a href="pricing.html">Pricing</a></li>
-          <li><a href="contact.html">Contact</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h4>Services</h4>
-        <ul>
-          <li><a href="services.html#svc-business-website">Business Website</a></li>
-          <li><a href="services.html#svc-landing-page">Landing Page</a></li>
-          <li><a href="services.html#svc-redesign">Website Redesign</a></li>
-          <li><a href="services.html#svc-seo">SEO Setup</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h4>Contact</h4>
-        <ul>
-          <li><a href="https://wa.me/916363797625" target="_blank">WhatsApp Us</a></li>
-          <li><a href="mailto:chirvox@gmail.com">chirvox@gmail.com</a></li>
-        </ul>
-      </div>
+      <div class="footer-col"><h4>Pages</h4><ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="portfolio.html">Portfolio</a></li>
+        <li><a href="pricing.html">Pricing</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul></div>
+      <div class="footer-col"><h4>Services</h4><ul>
+        <li><a href="services.html#svc-business-website">Business Website</a></li>
+        <li><a href="services.html#svc-landing-page">Lead Generation Page</a></li>
+        <li><a href="services.html#svc-redesign">Website Redesign</a></li>
+        <li><a href="services.html#svc-seo">SEO Setup</a></li>
+      </ul></div>
+      <div class="footer-col"><h4>Legal</h4><ul>
+        <li><a href="terms.html">Terms &amp; Conditions</a></li>
+        <li><a href="https://wa.me/916363797625" target="_blank">WhatsApp Us</a></li>
+        <li><a href="mailto:chirvox@gmail.com">chirvox@gmail.com</a></li>
+      </ul></div>
     </div>
     <div class="footer-bottom">
       <span>© 2025 Chirvox. All rights reserved.</span>
       <span>Made with ♥ in India</span>
+      <a href="terms.html" style="color:rgba(255,255,255,0.2);font-size:0.8rem;text-decoration:none" onmouseover="this.style.color='#c9a84c'" onmouseout="this.style.color='rgba(255,255,255,0.2)'">Terms &amp; Conditions</a>
     </div>
   </div>
 </footer>
+
+<script src="main.js"></script>
+<script>
+// Handle portfolio card clicks — if link is still placeholder, show friendly message
+function handlePortfolioClick(e, href) {
+  if (href.startsWith('YOUR_LINK_HERE')) {
+    e.preventDefault();
+    var name = e.currentTarget.querySelector('h3').textContent;
+    // Show a small toast instead of navigating
+    showToast('🔗 Link for "' + name + '" not set yet. Replace YOUR_LINK_HERE in portfolio.html.');
+  }
+  // If it's a real URL, the <a> tag handles it naturally (target=_blank)
+}
+
+function showToast(msg) {
+  var existing = document.getElementById('port-toast');
+  if (existing) existing.remove();
+  var t = document.createElement('div');
+  t.id = 'port-toast';
+  t.textContent = msg;
+  t.style.cssText = 'position:fixed;bottom:2rem;left:50%;transform:translateX(-50%);background:#111;border:1px solid rgba(201,168,76,0.4);color:rgba(255,255,255,0.85);padding:0.8rem 1.4rem;border-radius:100px;font-size:0.85rem;z-index:9999;white-space:nowrap;box-shadow:0 8px 30px rgba(0,0,0,0.5);max-width:90vw;white-space:normal;text-align:center;';
+  document.body.appendChild(t);
+  setTimeout(function(){ t.style.opacity='0'; t.style.transition='opacity 0.4s'; setTimeout(function(){ t.remove(); }, 400); }, 3500);
+}
+</script>
+</body>
+</html>
